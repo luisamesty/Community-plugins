@@ -1,0 +1,15 @@
+data/bin/org/idempiere/extend/SpecialEditC_InvoiceLineC_Charge_ID.class.i
+data/OSGI-INF/specialeditc_invoicelinec_charge_id.xml.i
+data/.project.i
+data/src/org/idempiere/extend/SpecialEditC_OrderC_Project_ID.java.i
+data/src/org/idempiere/extend/SpecialEditC_InvoiceLineC_Charge_ID.java.i
+data/.classpath.i
+data/bin/org/idempiere/extend/SpecialEditC_InvoiceLineAD_Org_ID.class.i
+data/plugin.xml.i
+data/.settings/org.eclipse.jdt.core.prefs.i
+data/OSGI-INF/specialeditc_invoicelinead_org_id.xml.i
+data/OSGI-INF/specialeditc_orderc_project_id.xml.i
+data/src/org/idempiere/extend/SpecialEditC_InvoiceLineAD_Org_ID.java.i
+data/bin/org/idempiere/extend/SpecialEditC_OrderC_Project_ID.class.i
+data/build.properties.i
+data/META-INF/MANIFEST.MF.i

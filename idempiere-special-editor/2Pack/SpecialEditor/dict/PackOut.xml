@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<idempiere Name="ExportAction" Version="1.0" idempiereVersion="" DataBaseVersion="" Description="" Author="" AuthorEmail="" CreatedDate="2012-12-20 18:01:44.548" UpdatedDate="2012-12-20 18:01:44.548" PackOutVersion="100" Client="0-SYSTEM-System">
+    <AD_ToolBarButton type="table">
+        <AD_Client_ID>0</AD_Client_ID>
+        <AD_Org_ID>0</AD_Org_ID>
+        <Action>W</Action>
+        <AD_Tab_ID reference="id"/>
+        <SeqNo/>
+        <AD_Process_ID reference="id"/>
+        <DisplayLogic>@Processed@=Y</DisplayLogic>
+        <IsActive>true</IsActive>
+        <IsCustomization>true</IsCustomization>
+        <Name>Special Editor Action</Name>
+        <KeyStroke_KeyCode>0</KeyStroke_KeyCode>
+        <KeyStroke_Modifiers>0</KeyStroke_Modifiers>
+        <AD_ToolBarButton_UU>63b52045-2af1-4285-a3ec-ac6eb0d9a998</AD_ToolBarButton_UU>
+        <ComponentName>SpecialEditor</ComponentName>
+        <ActionName/>
+        <ActionClassName>org.idempiere.ui.zk.action.specialeditor</ActionClassName>
+    </AD_ToolBarButton>
+    <AD_Message type="table">
+        <AD_Client_ID>0</AD_Client_ID>
+        <AD_Org_ID>0</AD_Org_ID>
+        <MsgType>I</MsgType>
+        <MsgText>Special Editor</MsgText>
+        <MsgTip/>
+        <EntityType>U</EntityType>
+        <AD_Message_UU>6761d846-d145-4d00-976d-f363ab233fb0</AD_Message_UU>
+        <Value>org.idempiere.ui.zk.action.specialeditor.tooltip</Value>
+        <IsActive>true</IsActive>
+    </AD_Message>
+    <AD_Message type="table">
+        <AD_Client_ID>0</AD_Client_ID>
+        <AD_Org_ID>0</AD_Org_ID>
+        <MsgType>I</MsgType>
+        <MsgText>Special Editor</MsgText>
+        <MsgTip/>
+        <EntityType>U</EntityType>
+        <AD_Message_UU>ee47881f-b5c7-45a7-821f-beb6a80d9d35</AD_Message_UU>
+        <Value>org.idempiere.ui.zk.action.specialeditor.label</Value>
+        <IsActive>true</IsActive>
+    </AD_Message>
+    <AD_Message type="table">
+        <AD_Client_ID>0</AD_Client_ID>
+        <AD_Org_ID>0</AD_Org_ID>
+        <MsgType>I</MsgType>
+        <MsgText>There are not fields configured for special edition</MsgText>
+        <MsgTip/>
+        <EntityType>U</EntityType>
+        <AD_Message_UU>169e65b8-0f15-4809-8d5b-cb514072b23e</AD_Message_UU>
+        <Value>NoFieldsForSpecialEdit</Value>
+        <IsActive>true</IsActive>
+    </AD_Message>
+    <AD_Message type="table">
+        <AD_Client_ID>0</AD_Client_ID>
+        <AD_Org_ID>0</AD_Org_ID>
+        <MsgType>I</MsgType>
+        <MsgText>Special Edit</MsgText>
+        <MsgTip/>
+        <EntityType>U</EntityType>
+        <AD_Message_UU>935473bf-9777-491b-af3f-94c4481ca251</AD_Message_UU>
+        <Value>SpecialEdit</Value>
+        <IsActive>true</IsActive>
+    </AD_Message>
+</idempiere>
