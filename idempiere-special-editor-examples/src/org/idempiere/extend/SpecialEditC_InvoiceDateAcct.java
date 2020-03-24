@@ -15,14 +15,14 @@ import org.compiere.util.TimeUtil;
 import org.idempiere.base.ISpecialEditCallout;
 import org.idempiere.base.SpecialEditorUtils;
 
-public class SpecialEditC_InvoiceDateInvoiced implements ISpecialEditCallout {
+public class SpecialEditC_InvoiceDateAcct implements ISpecialEditCallout {
 
 	@Override
 	public boolean canEdit(GridTab mTab, GridField mField, PO po) {
 		System.out.println("canEdit " + mTab + " - " + mField + " - "+ po);
 		
 		// The invoice date
-		if (mTab.getValue("DateInvoiced") == null)
+		if (mTab.getValue("DateAcct") == null)
 			return false;
 
 		return true;
@@ -48,13 +48,13 @@ public class SpecialEditC_InvoiceDateInvoiced implements ISpecialEditCallout {
 		Timestamp MaxDate = new Timestamp (cal.getTimeInMillis());
 		// GET DAteInvoiced
 		System.out.println("FirstDate="+FirstDate+"   Maxdate="+MaxDate);
-		Timestamp actualDateInvoiced = inv.getDateInvoiced();
+		Timestamp actualDateAcct = inv.getDateAcct();
 		if (DateEntered.before(FirstDate) || DateEntered.after(MaxDate)) {
 			String Message = "*** "+Msg.translate(Env.getCtx(),"invalid")+" **** "+
 					" ("+Msg.translate(Env.getCtx(),"From")+"="+FirstDate.toString().substring(0,10)+")"+
 					" ("+Msg.translate(Env.getCtx(),"to")+"="+MaxDate.toString().substring(0,10)+")";
-			mTab.setValue("DateInvoiced", actualDateInvoiced);
-			newValue=actualDateInvoiced;
+			mTab.setValue("DateAcct", actualDateAcct);
+			newValue=actualDateAcct;
 			return "Error !!!"+"   /r/n"+Message;
 		} else {
 			return null;			
@@ -73,9 +73,8 @@ public class SpecialEditC_InvoiceDateInvoiced implements ISpecialEditCallout {
 	public boolean updateEdit(GridTab mTab, GridField mField, PO po, Object newValue) {
 		//		po.set_ValueOfColumn("C_Charge_ID", newValue);
 		//		po.saveEx(); it can't be done using PO as you can't save a MInvoiceLine when its parent is processed
-
 		X_C_Invoice inv = new X_C_Invoice(Env.getCtx(), mTab.getRecord_ID(), null);
-		inv.setDateInvoiced((Timestamp) newValue);
+		inv.setDateAcct((Timestamp) newValue);
 		inv.saveEx();
 
 		return true;
@@ -83,13 +82,13 @@ public class SpecialEditC_InvoiceDateInvoiced implements ISpecialEditCallout {
 
 	@Override
 	public boolean postEdit(GridTab mTab, GridField mField, PO po) {
-
 		// Repost invoice
 		SpecialEditorUtils.post(mTab, new MInvoice(Env.getCtx(), (Integer) mTab.getValue("C_Invoice_ID"), null));
-
 		//Refresh
 		SpecialEditorUtils.refresh(mTab);
 		return true;
 	}
 
+
 }
+
