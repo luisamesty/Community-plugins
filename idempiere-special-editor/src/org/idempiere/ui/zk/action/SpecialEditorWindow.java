@@ -73,11 +73,19 @@ public class SpecialEditorWindow extends Window implements EventListener<Event>,
 		GridTab tab = panel.getActiveGridTab();
 		PO po = tab.getTableModel().getPO(tab.getCurrentRow());
 		for (GridField field : tab.getFields()) {
+// OJO TRAZA
+// System.out.println("Field: " + field.getColumnName() +" = "+field.getValue() +"  isDisplayed: " + field.isDisplayed(true) +
+//		" isAlwaysUpdateable = "+ field.isAlwaysUpdateable());
 			if (   field.isDisplayed(true)
 				&& !field.isAlwaysUpdateable()
 				&& !field.isReadOnly()
 				&& field.getDisplayType() != DisplayType.Button) {
 				if (canEdit(tab, field, po)) {
+// OJO TRAZA
+// System.out.println("Field: " + field.getColumnName() +" (OK for edit) = "+field.getValue() + 
+//		"  isDisplayed = " + field.isDisplayed(true) +
+//		" isAlwaysUpdateable = "+ field.isAlwaysUpdateable());
+//System.out.println("  ...OK for edit");
 					enabledFields.appendItem(field.getHeader(), field);
 				}
 			}
