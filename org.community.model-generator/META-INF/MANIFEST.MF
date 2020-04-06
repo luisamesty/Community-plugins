@@ -1,0 +1,23 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: INGEINT Model Generator
+Bundle-SymbolicName: org.community.ingeint.modelgenerator;singleton:=true
+Bundle-Version: 7.1.0.qualifier
+Bundle-Vendor: INGEINT <https:www.//ingeint.com>
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.adempiere.base;bundle-version="7.1.0",
+ org.adempiere.plugin.utils;bundle-version="7.1.0",
+ org.adempiere.ui.zk;bundle-version="7.1.0",
+ zcommon;bundle-version="8.6.0",
+ zel;bundle-version="8.6.0",
+ zhtml;bundle-version="8.6.0",
+ zk;bundle-version="8.6.0",
+ zkbind;bundle-version="8.6.0",
+ zkplus;bundle-version="8.6.0",
+ zul;bundle-version="8.6.0",
+ zweb;bundle-version="8.6.0"
+Import-Package: org.osgi.service.event;version="1.3.0"
+Service-Component: OSGI-INF/com.ingeint.component.ModelFactory.xml,OSGI-INF/com.ingeint.component.EventManager.xml,OSGI-INF/com.ingeint.component.CalloutFactory.xml,OSGI-INF/com.ingeint.component.ProcessFactory.xml,
+ OSGI-INF/com.ingeint.component.FormFactory.xml
+Bundle-Activator: org.adempiere.plugin.utils.Incremental2PackActivator

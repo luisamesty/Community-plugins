@@ -1,0 +1,27 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: KanbanBoard
+Bundle-SymbolicName: org.community.kanban-board;singleton:=true
+Bundle-Version: 7.1.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-Activator: org.adempiere.plugin.utils.Incremental2PackActivator
+Service-Component: OSGI-INF/KBModelFactory.xml, OSGI-INF/KBFormFactory.xml, OSGI-INF/KBProcessFactory.xml
+Bundle-ActivationPolicy: lazy
+Export-Package: org.kanbanboard.apps.form,
+ org.kanbanboard.model,
+ org.kanbanboard.process,
+ org.kanbanboard.webui.apps.form,
+ org.kanbanboard.webui.factory
+Require-Bundle: org.adempiere.base;bundle-version="7.1.0",
+ org.adempiere.plugin.utils;bundle-version="7.1.0",
+ org.adempiere.ui.zk;bundle-version="7.1.0",
+ zcommon;bundle-version="8.6.0",
+ zel;bundle-version="8.6.0",
+ zhtml;bundle-version="8.6.0",
+ zk;bundle-version="8.6.0",
+ zkbind;bundle-version="8.6.0",
+ zkplus;bundle-version="8.6.0",
+ zul;bundle-version="8.6.0",
+ zweb;bundle-version="8.6.0"
+Import-Package: org.compiere.apps
+Automatic-Module-Name: kanbanBoard
