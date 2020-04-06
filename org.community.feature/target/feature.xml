@@ -2,7 +2,7 @@
 <feature
       id="org.community.feature"
       label="Feature"
-      version="7.1.0.202003252015">
+      version="7.1.0.202004062025">
 
    <description url="http://www.example.com/description">
       [Enter Feature Description here.]
@@ -17,31 +17,29 @@
    </license>
 
    <plugin
-         id="org.community.kanbanBoard"
-         download-size="204"
-         install-size="297"
-         version="7.1.0.202003252015"
-         unpack="false"/>
-
-   <plugin
-         id="org.community.ingeint.modelgenerator"
-         download-size="46"
-         install-size="73"
-         version="7.1.0.202003252015"
-         unpack="false"/>
-
-   <plugin
          id="org.community.ui.zk.specialeditor"
          download-size="25"
          install-size="43"
-         version="7.1.0.202003252015"
+         version="7.1.0.202004062025"
          unpack="false"/>
 
    <plugin
          id="org.community.ui.zk.specialeditor_examples"
          download-size="20"
          install-size="37"
-         version="7.1.0.202003252015"
+         version="7.1.0.202004062025"
          unpack="false"/>
+
+   <plugin
+         id="org.community.kanban-board"
+         download-size="289"
+         install-size="471"
+         version="7.1.0.202004062025"/>
+
+   <plugin
+         id="org.community.model-generator"
+         download-size="80"
+         install-size="133"
+         version="7.1.0.202004062025"/>
 
 </feature>
