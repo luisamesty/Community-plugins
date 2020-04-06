@@ -25,3 +25,4 @@ Require-Bundle: org.adempiere.base;bundle-version="7.1.0",
  zweb;bundle-version="8.6.0"
 Import-Package: org.compiere.apps
 Automatic-Module-Name: kanbanBoard
+Bundle-Vendor: Diego Ruiz

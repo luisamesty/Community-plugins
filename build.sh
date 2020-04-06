@@ -9,7 +9,8 @@ mvn verify -Didempiere.target=org.community.p2.targetplatform -X
 #   org.community.p2.targetplatform/pom.xml
 #   org.community.ui.zk.specialeditor/pom.xml
 #   org.community.ui.zk.specialeditor_examples/pom.xml
-#   org.community.ingeint.modelgenerator/pom.xml
+#   org.community.model-generator/pom.xml
+#	org.community.kanban-board/pom.xml
 #  Relative Path is set as: 
 #  <relativePath>../../myexperiment/org.idempiere.parent/pom.xml</relativePath>
 #
