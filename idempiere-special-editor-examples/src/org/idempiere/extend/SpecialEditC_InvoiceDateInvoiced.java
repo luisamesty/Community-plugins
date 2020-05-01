@@ -34,18 +34,39 @@ public class SpecialEditC_InvoiceDateInvoiced implements ISpecialEditCallout {
 		X_C_Invoice inv = new X_C_Invoice(Env.getCtx(), mTab.getRecord_ID(), null);
 		Timestamp DateEntered = (Timestamp) newValue ;
 		Timestamp DateAcct = inv.getDateAcct();
-		// GET First day of the month using TimeUtil Class
+//		// GET First day of the month using TimeUtil Class
+//		Timestamp FirstDate = TimeUtil.getMonthFirstDay(DateAcct);
+//		// Calculates Last Day of Current Month
+//		GregorianCalendar cal = new GregorianCalendar();
+//		cal.setTime(FirstDate);
+//		cal.set(Calendar.HOUR_OF_DAY, 0);
+//		cal.set(Calendar.MINUTE, 0);
+//		cal.set(Calendar.SECOND, 0);
+//		cal.set(Calendar.MILLISECOND, 0);
+//		cal.add(Calendar.MONTH, 1);
+//		cal.add(Calendar.DATE, -1);
+//		Timestamp MaxDate = new Timestamp (cal.getTimeInMillis());
+		// Initiate Timestamp Variables
 		Timestamp FirstDate = TimeUtil.getMonthFirstDay(DateAcct);
-		// Calculates Last Day of Current Month
+		Timestamp MaxDate = TimeUtil.getMonthFirstDay(DateAcct);
+		// Calculates Last Day of Current Next Month
 		GregorianCalendar cal = new GregorianCalendar();
+		cal.setTime(MaxDate);
+		cal.set(Calendar.HOUR_OF_DAY, 0);
+		cal.set(Calendar.MINUTE, 0);
+		cal.set(Calendar.SECOND, 0);
+		cal.set(Calendar.MILLISECOND, 0);
+		cal.add(Calendar.MONTH, 2);
+		cal.add(Calendar.DATE, -1);
+		MaxDate = new Timestamp (cal.getTimeInMillis());
+		// Calculates First Day of Next Previus Month
 		cal.setTime(FirstDate);
 		cal.set(Calendar.HOUR_OF_DAY, 0);
 		cal.set(Calendar.MINUTE, 0);
 		cal.set(Calendar.SECOND, 0);
 		cal.set(Calendar.MILLISECOND, 0);
-		cal.add(Calendar.MONTH, 1);
-		cal.add(Calendar.DATE, -1);
-		Timestamp MaxDate = new Timestamp (cal.getTimeInMillis());
+		cal.add(Calendar.MONTH, -1);
+		FirstDate = new Timestamp (cal.getTimeInMillis());
 		// GET DAteInvoiced
 		System.out.println("FirstDate="+FirstDate+"   Maxdate="+MaxDate);
 		Timestamp actualDateInvoiced = inv.getDateInvoiced();
