@@ -9,11 +9,13 @@ import org.compiere.model.GridTab;
 import org.compiere.model.MInvoice;
 import org.compiere.model.PO;
 import org.compiere.model.X_C_Invoice;
+import org.compiere.model.X_C_Payment;
 import org.compiere.util.Env;
 import org.compiere.util.Msg;
 import org.compiere.util.TimeUtil;
 import org.idempiere.base.ISpecialEditCallout;
 import org.idempiere.base.SpecialEditorUtils;
+import org.idempiere.utils.SpecialEditUtilities;
 
 public class SpecialEditC_InvoiceDateAcct implements ISpecialEditCallout {
 
@@ -34,6 +36,15 @@ public class SpecialEditC_InvoiceDateAcct implements ISpecialEditCallout {
 	public String validateEdit(GridTab mTab, GridField mField, PO po, Object newValue) {
 		System.out.println("validateEdit " + mTab + " - " + mField + " - "+ po);
 		X_C_Invoice inv = new X_C_Invoice(Env.getCtx(), mTab.getRecord_ID(), null);
+		// Verify C_AllocationLine C_AllocationLine_C_Invoice
+		SpecialEditUtilities sea = new SpecialEditUtilities();
+		boolean isAllocPay = sea.C_AllocationLine_C_Invoice(mTab.getRecord_ID());
+		if (isAllocPay) {
+			Message = "*** "+Msg.translate(Env.getCtx(),"invalid")+" **** \r\n";
+			if (isAllocPay)
+				Message= Message+Msg.translate(Env.getCtx(),"InvoiceHasAllocations"+" \r\n");
+			return "Error !!!"+"  "+Message;
+		}
 		Timestamp DateEntered = (Timestamp) newValue ;
 		Timestamp DateAcct = inv.getDateAcct();
 		// Initiate Timestamp Variables

@@ -14,9 +14,12 @@ import org.compiere.util.Msg;
 import org.compiere.util.TimeUtil;
 import org.idempiere.base.ISpecialEditCallout;
 import org.idempiere.base.SpecialEditorUtils;
+import org.idempiere.utils.SpecialEditUtilities;
 
 public class SpecialEditC_InvoiceDateInvoiced implements ISpecialEditCallout {
 
+	String Message="";
+	
 	@Override
 	public boolean canEdit(GridTab mTab, GridField mField, PO po) {
 		System.out.println("canEdit " + mTab + " - " + mField + " - "+ po);
@@ -32,20 +35,17 @@ public class SpecialEditC_InvoiceDateInvoiced implements ISpecialEditCallout {
 	public String validateEdit(GridTab mTab, GridField mField, PO po, Object newValue) {
 		System.out.println("validateEdit " + mTab + " - " + mField + " - "+ po);
 		X_C_Invoice inv = new X_C_Invoice(Env.getCtx(), mTab.getRecord_ID(), null);
+		// Verify C_AllocationLine C_AllocationLine_C_Invoice
+		SpecialEditUtilities sea = new SpecialEditUtilities();
+		boolean isAllocPay = sea.C_AllocationLine_C_Invoice(mTab.getRecord_ID());
+		if (isAllocPay) {
+			Message = "*** "+Msg.translate(Env.getCtx(),"invalid")+" **** \r\n";
+			if (isAllocPay)
+				Message= Message+Msg.translate(Env.getCtx(),"InvoiceHasAllocations"+" \r\n");
+			return "Error !!!"+"  "+Message;
+		}
 		Timestamp DateEntered = (Timestamp) newValue ;
 		Timestamp DateAcct = inv.getDateAcct();
-//		// GET First day of the month using TimeUtil Class
-//		Timestamp FirstDate = TimeUtil.getMonthFirstDay(DateAcct);
-//		// Calculates Last Day of Current Month
-//		GregorianCalendar cal = new GregorianCalendar();
-//		cal.setTime(FirstDate);
-//		cal.set(Calendar.HOUR_OF_DAY, 0);
-//		cal.set(Calendar.MINUTE, 0);
-//		cal.set(Calendar.SECOND, 0);
-//		cal.set(Calendar.MILLISECOND, 0);
-//		cal.add(Calendar.MONTH, 1);
-//		cal.add(Calendar.DATE, -1);
-//		Timestamp MaxDate = new Timestamp (cal.getTimeInMillis());
 		// Initiate Timestamp Variables
 		Timestamp FirstDate = TimeUtil.getMonthFirstDay(DateAcct);
 		Timestamp MaxDate = TimeUtil.getMonthFirstDay(DateAcct);
