@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.idempiere.ui.zk.action;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.adempiere.base.Service;
@@ -20,8 +21,11 @@ import org.adempiere.base.ServiceQuery;
 import org.adempiere.exceptions.AdempiereException;
 import org.adempiere.webui.adwindow.ADWindowContent;
 import org.adempiere.webui.component.ConfirmPanel;
+import org.adempiere.webui.component.Grid;
+import org.adempiere.webui.component.GridFactory;
 import org.adempiere.webui.component.Label;
 import org.adempiere.webui.component.Listbox;
+import org.adempiere.webui.component.Textbox;
 import org.adempiere.webui.component.Window;
 import org.adempiere.webui.editor.WEditor;
 import org.adempiere.webui.editor.WebEditorFactory;
@@ -52,14 +56,17 @@ public class SpecialEditorWindow extends Window implements EventListener<Event>,
 	 * 
 	 */
 	private static final long serialVersionUID = 66664724163845835L;
-
+	private String retMessage = "";
 	private ConfirmPanel confirmPanel = new ConfirmPanel(true);
 	private Listbox enabledFields = new Listbox();
 	private Div divField = new Div();
 	private Hbox hbField = new Hbox();
 	private WEditor editor = null;
+	private Label messageLabel = new Label();
+	public Textbox messageField = new Textbox();
 	Hbox hb = new Hbox();
-
+    Hbox hbm = new Hbox();
+    
 	/**
 	 *
 	 */
@@ -94,7 +101,7 @@ public class SpecialEditorWindow extends Window implements EventListener<Event>,
 		enabledFields.addEventListener(Events.ON_SELECT, this);
 
 		setTitle(Msg.getMsg(Env.getCtx(), "SpecialEdit") + ": " + panel.getActiveGridTab().getName());
-		setWidth("450px");
+		setWidth("650px");
 		setClosable(true);
 		setSizable(true);
 		setBorder("normal");
@@ -126,9 +133,29 @@ public class SpecialEditorWindow extends Window implements EventListener<Event>,
 			vb.appendChild(hb);
 
 			divField.setStyle("float: right");
+			divField.setWidth("250px");
 			hbField.appendChild(divField);
 			vb.appendChild(hbField);
-
+			
+			// Message Field
+			
+			Vbox vbm = new Vbox();
+			vbm.setWidth("100%");
+			appendChild(vbm);
+			Div divm = new Div();
+			divm.appendChild(new Label(Msg.getMsg(Env.getCtx(), "Message")));
+			hbm.appendChild(divm);
+			vbm.appendChild(hbm);
+			hbm.appendChild(messageField);
+			messageField.setWidth("100%");
+			messageLabel.setText(Msg.translate(Env.getCtx(), "Message"));
+			messageField.setText("");
+			messageField.setWidth("450px");
+			messageField.setReadonly(true);
+			messageField.setStyle("text-align: left");
+			messageField.setValue(Msg.getMsg(Env.getCtx(), "RequiredEnter"));
+			// Message Field
+			
 			confirmPanel = new ConfirmPanel(true);
 			vb.appendChild(confirmPanel);
 			confirmPanel.addActionListener(this);
@@ -148,6 +175,9 @@ public class SpecialEditorWindow extends Window implements EventListener<Event>,
 				PO po = mTab.getTableModel().getPO(mTab.getCurrentRow());
 				Object newValue = editor.getValue();
 				update(mTab, mField, po, newValue);
+				// Set Message to Text Field
+				messageField.setValue(retMessage);
+				// 
 			}
 			onClose();
 
@@ -209,6 +239,9 @@ public class SpecialEditorWindow extends Window implements EventListener<Event>,
 			String err = co.validateEdit(mTab, mField, po, newValue);
 			if (!Util.isEmpty(err)) {
 				Clients.showNotification(err, "error", this, "overlap/top_lef", 2000, true);
+				// Return Message to Form
+				messageField.setValue(err);
+				// 
 				return;
 			}
 		}
@@ -242,6 +275,23 @@ public class SpecialEditorWindow extends Window implements EventListener<Event>,
 			return true;
 		}
 		return false;
+	}
+
+	public Textbox getMessageField() {
+		return messageField;
+	}
+
+	public void setMessageField(Textbox messageField) {
+		this.messageField = messageField;
+		
+	}
+
+	public String getRetMessage() {
+		return retMessage;
+	}
+
+	public void setRetMessage(String retMessage) {
+		this.retMessage = retMessage;
 	}
 
 }

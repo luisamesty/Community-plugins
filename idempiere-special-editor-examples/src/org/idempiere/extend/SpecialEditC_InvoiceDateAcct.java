@@ -17,6 +17,8 @@ import org.idempiere.base.SpecialEditorUtils;
 
 public class SpecialEditC_InvoiceDateAcct implements ISpecialEditCallout {
 
+	String Message = "";
+	
 	@Override
 	public boolean canEdit(GridTab mTab, GridField mField, PO po) {
 		System.out.println("canEdit " + mTab + " - " + mField + " - "+ po);

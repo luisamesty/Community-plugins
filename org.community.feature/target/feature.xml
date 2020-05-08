@@ -2,7 +2,7 @@
 <feature
       id="org.community.feature"
       label="Feature"
-      version="7.1.0.202005071653">
+      version="7.1.0.202005080602">
 
    <description url="http://www.example.com/description">
       [Enter Feature Description here.]
@@ -18,28 +18,28 @@
 
    <plugin
          id="org.community.ui.zk.specialeditor"
-         download-size="25"
-         install-size="43"
-         version="7.1.0.202005071653"
+         download-size="26"
+         install-size="44"
+         version="7.1.0.202005080602"
          unpack="false"/>
 
    <plugin
          id="org.community.ui.zk.specialeditor_examples"
          download-size="40"
          install-size="78"
-         version="7.1.0.202005071653"
+         version="7.1.0.202005080602"
          unpack="false"/>
 
    <plugin
          id="org.community.kanban-board"
          download-size="289"
          install-size="471"
-         version="7.1.0.202005071653"/>
+         version="7.1.0.202005080602"/>
 
    <plugin
          id="org.community.model-generator"
          download-size="81"
          install-size="135"
-         version="7.1.0.202005071653"/>
+         version="7.1.0.202005080602"/>
 
 </feature>

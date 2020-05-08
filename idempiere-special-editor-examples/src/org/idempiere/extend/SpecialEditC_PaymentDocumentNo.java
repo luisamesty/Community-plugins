@@ -17,6 +17,8 @@ import org.idempiere.base.SpecialEditorUtils;
 
 public class SpecialEditC_PaymentDocumentNo implements ISpecialEditCallout {
 
+	String Message = "";
+
 	@Override
 	public boolean canEdit(GridTab mTab, GridField mField, PO po) {
 		System.out.println("canEdit " + mTab + " - " + mField + " - "+ po);
@@ -31,7 +33,7 @@ public class SpecialEditC_PaymentDocumentNo implements ISpecialEditCallout {
 		String DocumentNoEntered = (String) newValue;
 		
 		if (newValue == null) {
-			String Message = "*** "+Msg.translate(Env.getCtx(),"invalid")+" **** "+
+			Message = "*** "+Msg.translate(Env.getCtx(),"invalid")+" **** "+
 					" ("+Msg.translate(Env.getCtx(),"DocumentNo")+"="+DocumentNoEntered+")";
 			return "Error !!!"+"   /r/n"+Message;
 		}

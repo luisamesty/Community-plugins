@@ -79,6 +79,8 @@ public class SpecialEditC_PaymentDateAcct implements ISpecialEditCallout {
 					" ("+Msg.translate(Env.getCtx(),"to")+"="+MaxDate.toString().substring(0,10)+")";
 			mTab.setValue("DateAcct", actualDateAcct);
 			newValue=actualDateAcct;
+			
+			
 			return "Error !!!"+"   /r/n"+Message;
 		} else {
 			return null;			
