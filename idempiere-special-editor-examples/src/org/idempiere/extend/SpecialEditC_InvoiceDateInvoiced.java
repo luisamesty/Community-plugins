@@ -97,7 +97,9 @@ public class SpecialEditC_InvoiceDateInvoiced implements ISpecialEditCallout {
 		X_C_Invoice inv = new X_C_Invoice(Env.getCtx(), mTab.getRecord_ID(), null);
 		inv.setDateInvoiced((Timestamp) newValue);
 		inv.saveEx();
-
+		// UPDATE WITHHOLDING
+		SpecialEditUtilities sea = new SpecialEditUtilities();
+		sea.updateLCO_InvoiceWithholdingDateInvoiced(inv.getC_Invoice_ID(), inv.getDateInvoiced(), null);
 		return true;
 	}
 

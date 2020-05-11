@@ -1,6 +1,11 @@
 package org.idempiere.utils;
 
+import java.sql.Timestamp;
+
+import org.adempiere.exceptions.DBException;
+import org.compiere.model.MSysConfig;
 import org.compiere.util.DB;
+import org.compiere.util.Env;
 
 public class SpecialEditUtilities {
 
@@ -70,5 +75,56 @@ public class SpecialEditUtilities {
 			retValue=false;
 		}
     	return retValue;	
+	}
+	/**
+	 *  updateLCO_InvoiceWithholdingDateAcct
+	 * @param p_C_Invoice_ID
+	 * @param p_DateAcct
+	 * @param trxName
+	 * @return
+	 * @throws DBException
+	 * 
+	 * Notes:
+	 * Temporary Made using DB access direct. 
+	 * Model method will be used instead.
+	 */
+	public int updateLCO_InvoiceWithholdingDateAcct(int p_C_Invoice_ID, Timestamp p_DateAcct, String trxName)
+	throws DBException
+	{
+		String sql;
+		int no=0;
+		if (! MSysConfig.getBooleanValue("LCO_USE_WITHHOLDINGS", true, Env.getAD_Client_ID(Env.getCtx())))
+			return no;
+		// SET  LCO_InvoiceWithholding
+		sql = "UPDATE LCO_InvoiceWithholding SET DateAcct = '"+p_DateAcct+"' WHERE  C_Invoice_ID="+p_C_Invoice_ID;	
+		System.out.println("sql="+sql);
+		no = DB.executeUpdateEx(sql, trxName);
+		return no;
+	}
+	
+	/**
+	 *  updateLCO_InvoiceWithholdingDateAcct
+	 * @param p_C_Invoice_ID
+	 * @param p_DateTrx
+	 * @param trxName
+	 * @return
+	 * @throws DBException
+	 * 
+	 * Notes:
+	 * Temporary Made using DB access direct. 
+	 * Model method will be used instead.
+	 */
+	public int updateLCO_InvoiceWithholdingDateInvoiced(int p_C_Invoice_ID, Timestamp p_DateTrx, String trxName)
+	throws DBException
+	{
+		String sql;
+		int no=0;
+		if (! MSysConfig.getBooleanValue("LCO_USE_WITHHOLDINGS", true, Env.getAD_Client_ID(Env.getCtx())))
+			return no;
+		// SET  LCO_InvoiceWithholding
+		sql = "UPDATE LCO_InvoiceWithholding SET DateTrx = '"+p_DateTrx+"' WHERE  C_Invoice_ID="+p_C_Invoice_ID;	
+		System.out.println("sql="+sql);
+		no = DB.executeUpdateEx(sql, trxName);
+		return no;
 	}
 }

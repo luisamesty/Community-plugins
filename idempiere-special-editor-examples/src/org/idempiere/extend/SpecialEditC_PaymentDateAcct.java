@@ -8,8 +8,8 @@ import org.compiere.model.GridField;
 import org.compiere.model.GridTab;
 import org.compiere.model.MPayment;
 import org.compiere.model.PO;
+import org.compiere.model.X_C_Invoice;
 import org.compiere.model.X_C_Payment;
-import org.compiere.util.DB;
 import org.compiere.util.Env;
 import org.compiere.util.Msg;
 import org.compiere.util.TimeUtil;
@@ -102,8 +102,16 @@ public class SpecialEditC_PaymentDateAcct implements ISpecialEditCallout {
 		X_C_Payment pay = new X_C_Payment(Env.getCtx(), mTab.getRecord_ID(), null);
 		pay.setDateAcct((Timestamp) newValue);
 		pay.saveEx();
-
+//		// UPDATE WITHHOLDING (LCO_InvoiceWithholding Table )
+//		int C_Invoice_ID = pay.getC_Invoice_ID();
+//		if (C_Invoice_ID > 0) {
+//			X_C_Invoice inv = new X_C_Invoice(Env.getCtx(), C_Invoice_ID, null);
+//			Timestamp DateInvoiced = inv.getDateInvoiced();
+//			SpecialEditUtilities sea = new SpecialEditUtilities();
+//			sea.updateLCO_InvoiceWithholdingDateAcct(C_Invoice_ID, DateInvoiced, null);
+//		}
 		return true;
+
 	}
 
 	@Override
@@ -115,28 +123,5 @@ public class SpecialEditC_PaymentDateAcct implements ISpecialEditCallout {
 		return true;
 	}
 	
-	/**
-	 * C_AllocationLine_C_Payment
-	 * @param p_C_Payment_ID
-	 * @param trxName
-	 * @return  (TRUE IF PAYMENT IS ALLOCATED)
-	 */
-	public boolean C_AllocationLine_C_Payment (int p_C_Payment_ID)
 	
-	{
-		String sql;
-		int C_AllocationLine_ID=0;
-		boolean retValue=false;
-		// 
-    	sql = "SELECT DISTINCT C_AllocationLine_ID FROM C_AllocationLine WHERE C_Payment_ID=?" ;
-    	C_AllocationLine_ID = DB.getSQLValue(null, sql, p_C_Payment_ID);	
-    	//log.warning("sql:"+sql+"  p_C_Payment_ID:"+p_C_Payment_ID+"  C_AllocationLine_ID:"+C_AllocationLine_ID);
-		if (C_AllocationLine_ID > 0) {
-			retValue=true;
-		} else {
-			//retValue=Msg.getElement(Env.getCtx(),"C_AllocationLine_ID")+": ** NO TIENE **";
-			retValue=false;
-		}
-    	return retValue;	
-	}
 }

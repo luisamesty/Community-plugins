@@ -9,7 +9,6 @@ import org.compiere.model.GridTab;
 import org.compiere.model.MInvoice;
 import org.compiere.model.PO;
 import org.compiere.model.X_C_Invoice;
-import org.compiere.model.X_C_Payment;
 import org.compiere.util.Env;
 import org.compiere.util.Msg;
 import org.compiere.util.TimeUtil;
@@ -98,7 +97,9 @@ public class SpecialEditC_InvoiceDateAcct implements ISpecialEditCallout {
 		X_C_Invoice inv = new X_C_Invoice(Env.getCtx(), mTab.getRecord_ID(), null);
 		inv.setDateAcct((Timestamp) newValue);
 		inv.saveEx();
-
+		// UPDATE WITHHOLDING
+		SpecialEditUtilities sea = new SpecialEditUtilities();
+		sea.updateLCO_InvoiceWithholdingDateAcct(inv.getC_Invoice_ID(), inv.getDateAcct(), null);
 		return true;
 	}
 
@@ -110,5 +111,5 @@ public class SpecialEditC_InvoiceDateAcct implements ISpecialEditCallout {
 		SpecialEditorUtils.refresh(mTab);
 		return true;
 	}
-
+	
 }
