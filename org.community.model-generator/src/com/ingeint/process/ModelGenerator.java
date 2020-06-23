@@ -24,8 +24,8 @@ public class ModelGenerator extends CustomProcess{
 			mgen.setTableName(table.getTableName());
 		}
 		
-		ModelInterfaceGenerator.generateSource(mgen.getFolder(), mgen.getPackageName(), mgen.getEntityType(), mgen.getTableName());
-		ModelClassGenerator.generateSource(mgen.getFolder(), mgen.getPackageName(), mgen.getEntityType(), mgen.getTableName());	
+		ModelInterfaceGenerator.generateSource(mgen.getFolder(), mgen.getPackageName(), mgen.getEntityType(), mgen.getTableName(), null);
+		ModelClassGenerator.generateSource(mgen.getFolder(), mgen.getPackageName(), mgen.getEntityType(), mgen.getTableName(), null);	
 		
 		addBufferLog(mgen.get_ID(), mgen.getCreated(),null,"@ModelGenerated@", mgen.get_Table_ID(),mgen.get_ID());
 		return null;
