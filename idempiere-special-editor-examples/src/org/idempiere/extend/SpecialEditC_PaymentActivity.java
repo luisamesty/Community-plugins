@@ -10,7 +10,7 @@ import org.compiere.util.Msg;
 import org.idempiere.base.ISpecialEditCallout;
 import org.idempiere.base.SpecialEditorUtils;
 
-public class SpecialEditC_PaymentDescription implements ISpecialEditCallout {
+public class SpecialEditC_PaymentActivity implements ISpecialEditCallout {
 
 	String Message = "";
 
@@ -24,12 +24,11 @@ public class SpecialEditC_PaymentDescription implements ISpecialEditCallout {
 	@Override
 	public String validateEdit(GridTab mTab, GridField mField, PO po, Object newValue) {
 		System.out.println("validateEdit " + mTab + " - " + mField + " - "+ po);
-		X_C_Payment pay = new X_C_Payment(Env.getCtx(), mTab.getRecord_ID(), null);
-		String DescriptionEntered = (String) newValue;
+		int C_Activity_ID = (int) newValue;
 		
 		if (newValue == null) {
 			Message = "*** "+Msg.translate(Env.getCtx(),"invalid")+" **** "+
-					" ("+Msg.translate(Env.getCtx(),"Description")+"="+DescriptionEntered+")";
+					" ("+Msg.getElement(Env.getCtx(),"C_Activity_ID")+"="+C_Activity_ID+")";
 			return "Error !!!"+"   /r/n"+Message;
 		}
 		return null;
@@ -48,7 +47,7 @@ public class SpecialEditC_PaymentDescription implements ISpecialEditCallout {
 		//		po.set_ValueOfColumn("C_Charge_ID", newValue);
 		//		po.saveEx(); it can't be done using PO as you can't save a MInvoiceLine when its parent is processed
 		X_C_Payment pay = new X_C_Payment(Env.getCtx(), mTab.getRecord_ID(), null);
-		pay.setDescription((String) newValue);
+		pay.setC_Activity_ID((Integer) newValue);
 		pay.saveEx();
 
 		return true;

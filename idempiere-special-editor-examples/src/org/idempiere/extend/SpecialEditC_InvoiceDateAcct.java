@@ -23,10 +23,6 @@ public class SpecialEditC_InvoiceDateAcct implements ISpecialEditCallout {
 	@Override
 	public boolean canEdit(GridTab mTab, GridField mField, PO po) {
 		System.out.println("canEdit " + mTab + " - " + mField + " - "+ po);
-		
-		// The invoice date account
-		//if (mTab.getValue("DateAcct") == null)
-		//	return false;
 
 		return true;
 	}
