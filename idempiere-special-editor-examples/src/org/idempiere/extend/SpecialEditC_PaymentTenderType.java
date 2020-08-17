@@ -12,10 +12,6 @@
  ******************************************************************************/
 package org.idempiere.extend;
 
-import java.sql.Timestamp;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-
 import org.compiere.model.GridField;
 import org.compiere.model.GridTab;
 import org.compiere.model.MPayment;
@@ -23,7 +19,6 @@ import org.compiere.model.PO;
 import org.compiere.model.X_C_Payment;
 import org.compiere.util.Env;
 import org.compiere.util.Msg;
-import org.compiere.util.TimeUtil;
 import org.idempiere.base.ISpecialEditCallout;
 import org.idempiere.base.SpecialEditorUtils;
 
@@ -39,7 +34,6 @@ public class SpecialEditC_PaymentTenderType implements ISpecialEditCallout {
 	@Override
 	public String validateEdit(GridTab mTab, GridField mField, PO po, Object newValue) {
 		System.out.println("validateEdit " + mTab + " - " + mField + " - "+ po);
-		X_C_Payment pay = new X_C_Payment(Env.getCtx(), mTab.getRecord_ID(), null);
 		String TenderTypeEntered = (String) newValue;
 		
 		if (newValue == null) {

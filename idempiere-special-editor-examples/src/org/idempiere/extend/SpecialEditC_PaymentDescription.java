@@ -36,7 +36,6 @@ public class SpecialEditC_PaymentDescription implements ISpecialEditCallout {
 	@Override
 	public String validateEdit(GridTab mTab, GridField mField, PO po, Object newValue) {
 		System.out.println("validateEdit " + mTab + " - " + mField + " - "+ po);
-		X_C_Payment pay = new X_C_Payment(Env.getCtx(), mTab.getRecord_ID(), null);
 		String DescriptionEntered = (String) newValue;
 		
 		if (newValue == null) {

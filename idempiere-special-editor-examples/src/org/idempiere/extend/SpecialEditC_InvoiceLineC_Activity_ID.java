@@ -13,13 +13,10 @@
  *****************************************************************************/
 package org.idempiere.extend;
 
-import java.sql.Timestamp;
-
 import org.compiere.model.GridField;
 import org.compiere.model.GridTab;
 import org.compiere.model.MInvoice;
 import org.compiere.model.PO;
-import org.compiere.model.X_C_Invoice;
 import org.compiere.model.X_C_InvoiceLine;
 import org.compiere.util.Env;
 import org.idempiere.base.ISpecialEditCallout;

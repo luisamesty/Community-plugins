@@ -20,7 +20,6 @@ import org.compiere.model.GridField;
 import org.compiere.model.GridTab;
 import org.compiere.model.MPayment;
 import org.compiere.model.PO;
-import org.compiere.model.X_C_Invoice;
 import org.compiere.model.X_C_Payment;
 import org.compiere.util.Env;
 import org.compiere.util.Msg;

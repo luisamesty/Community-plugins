@@ -14,9 +14,9 @@ package org.idempiere.extend;
 
 import org.compiere.model.GridField;
 import org.compiere.model.GridTab;
-import org.compiere.model.MInvoice;
+import org.compiere.model.MInventory;
 import org.compiere.model.PO;
-import org.compiere.model.X_C_Invoice;
+import org.compiere.model.X_M_Inventory;
 import org.compiere.util.Env;
 import org.idempiere.base.ISpecialEditCallout;
 import org.idempiere.base.SpecialEditorUtils;
@@ -26,7 +26,7 @@ import org.idempiere.base.SpecialEditorUtils;
  * Luis Amesty
  *
  */
-public class SpecialEditC_InvoiceC_Activity_ID implements ISpecialEditCallout {
+public class SpecialEditM_InventoryC_Activity_ID implements ISpecialEditCallout {
 	
 	String Message = "";
 	
@@ -51,14 +51,14 @@ public class SpecialEditC_InvoiceC_Activity_ID implements ISpecialEditCallout {
 	@Override
 	public boolean preEdit(GridTab mTab, GridField mField, PO po) {
 		System.out.println("preEdit " + mTab + " - " + mField + " - "+ po);
-		SpecialEditorUtils.deletePosting(new MInvoice(Env.getCtx(), (Integer) mTab.getValue("C_Invoice_ID"), null));
+		SpecialEditorUtils.deletePosting(new MInventory(Env.getCtx(), (Integer) mTab.getValue("M_Inventory_ID"), null));
 		return true;
 	}
 
 	@Override
 	public boolean updateEdit(GridTab mTab, GridField mField, PO po, Object newValue) {
 
-		X_C_Invoice inv = new X_C_Invoice(Env.getCtx(), mTab.getRecord_ID(), null);
+		X_M_Inventory inv = new X_M_Inventory(Env.getCtx(), mTab.getRecord_ID(), null);
 		inv.setC_Activity_ID((Integer) newValue);
 		inv.saveEx();
 		return true;
@@ -68,7 +68,7 @@ public class SpecialEditC_InvoiceC_Activity_ID implements ISpecialEditCallout {
 	public boolean postEdit(GridTab mTab, GridField mField, PO po) {
 		System.out.println("postEdit " + mTab + " - " + mField + " - "+ po);
 		// Repost invoice
-		SpecialEditorUtils.post(mTab, new MInvoice(Env.getCtx(), (Integer) mTab.getValue("C_Invoice_ID"), null));
+		SpecialEditorUtils.post(mTab, new MInventory(Env.getCtx(), (Integer) mTab.getValue("M_Inventory_ID"), null));
 
 		//Refresh
 		SpecialEditorUtils.refresh(mTab);
