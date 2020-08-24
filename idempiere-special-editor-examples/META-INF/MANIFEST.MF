@@ -8,20 +8,14 @@ Bundle-RequiredExecutionEnvironment: JavaSE-11
 Import-Package: org.adempiere.base,
  org.adempiere.exceptions,
  org.adempiere.plugin.utils,
- org.adempiere.webui.action,
- org.adempiere.webui.adwindow,
- org.adempiere.webui.apps,
- org.adempiere.webui.component,
- org.adempiere.webui.editor,
- org.adempiere.webui.event,
- org.adempiere.webui.window,
  org.compiere.model,
  org.compiere.util,
  org.osgi.framework
 Service-Component: OSGI-INF/*.xml
 Bundle-ActivationPolicy: lazy
 Export-Package: org.idempiere.extend
-Require-Bundle: org.community.ui.zk.specialeditor;bundle-version="7.1.0",
+Require-Bundle: org.adempiere.base;bundle-version="7.1.0",
+ org.community.ui.zk.specialeditor;bundle-version="7.1.0",
  zcommon;bundle-version="8.6.0",
  zel;bundle-version="8.6.0",
  zhtml;bundle-version="8.6.0",
