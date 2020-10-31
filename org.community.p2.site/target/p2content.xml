@@ -528,17 +528,28 @@
       </instructions>
     </touchpointData>
   </unit>
+<<<<<<< HEAD
   <unit id='202010311742.Default' version='1.0.0.7D1-cMZgvE7737353955GA7'>
+=======
+  <unit id='202010311728.Default' version='1.0.0.7D1-cMZgvE7737353955G7I'>
+>>>>>>> a12a596727d19a97245d6a89f09de5d070c37c22
     <properties size='3'>
       <property name='org.eclipse.equinox.p2.name' value='Uncategorized'/>
       <property name='org.eclipse.equinox.p2.description' value='Default category for otherwise uncategorized features'/>
       <property name='org.eclipse.equinox.p2.type.category' value='true'/>
     </properties>
     <provides size='1'>
+<<<<<<< HEAD
       <provided namespace='org.eclipse.equinox.p2.iu' name='202010311742.Default' version='1.0.0.7D1-cMZgvE7737353955GA7'/>
     </provides>
     <requires size='1'>
       <required namespace='org.eclipse.equinox.p2.iu' name='org.community.feature.feature.group' range='[7.1.0.202010311742,7.1.0.202010311742]'/>
+=======
+      <provided namespace='org.eclipse.equinox.p2.iu' name='202010311728.Default' version='1.0.0.7D1-cMZgvE7737353955G7I'/>
+    </provides>
+    <requires size='1'>
+      <required namespace='org.eclipse.equinox.p2.iu' name='org.community.feature.feature.group' range='[7.1.0.202010311728,7.1.0.202010311728]'/>
+>>>>>>> a12a596727d19a97245d6a89f09de5d070c37c22
     </requires>
     <touchpoint id='null' version='0.0.0'/>
   </unit>
