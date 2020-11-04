@@ -1,12 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <units size='2'>
-<<<<<<< HEAD
-  <unit id='org.community.feature.feature.group' version='7.1.0.202010311742' singleton='false'>
-    <update id='org.community.feature.feature.group' range='[0.0.0,7.1.0.202010311742)' severity='0'/>
-=======
-  <unit id='org.community.feature.feature.group' version='7.1.0.202010311728' singleton='false'>
-    <update id='org.community.feature.feature.group' range='[0.0.0,7.1.0.202010311728)' severity='0'/>
->>>>>>> a12a596727d19a97245d6a89f09de5d070c37c22
+  <unit id='org.community.feature.feature.group' version='7.1.0.202011041202' singleton='false'>
+    <update id='org.community.feature.feature.group' range='[0.0.0,7.1.0.202011041202)' severity='0'/>
     <properties size='7'>
       <property name='org.eclipse.equinox.p2.name' value='Feature'/>
       <property name='org.eclipse.equinox.p2.description' value='[Enter Feature Description here.]'/>
@@ -17,25 +12,14 @@
       <property name='maven-version' value='7.1.0-SNAPSHOT'/>
     </properties>
     <provides size='1'>
-<<<<<<< HEAD
-      <provided namespace='org.eclipse.equinox.p2.iu' name='org.community.feature.feature.group' version='7.1.0.202010311742'/>
+      <provided namespace='org.eclipse.equinox.p2.iu' name='org.community.feature.feature.group' version='7.1.0.202011041202'/>
     </provides>
     <requires size='5'>
-      <required namespace='org.eclipse.equinox.p2.iu' name='org.community.ui.zk.specialeditor' range='[7.1.0.202010311742,7.1.0.202010311742]'/>
-      <required namespace='org.eclipse.equinox.p2.iu' name='org.community.ui.zk.specialeditor_examples' range='[7.1.0.202010311742,7.1.0.202010311742]'/>
-      <required namespace='org.eclipse.equinox.p2.iu' name='org.community.kanban-board' range='[7.1.0.202010311742,7.1.0.202010311742]'/>
-      <required namespace='org.eclipse.equinox.p2.iu' name='org.community.model-generator' range='[7.1.0.202010311742,7.1.0.202010311742]'/>
-      <required namespace='org.eclipse.equinox.p2.iu' name='org.community.feature.feature.jar' range='[7.1.0.202010311742,7.1.0.202010311742]'>
-=======
-      <provided namespace='org.eclipse.equinox.p2.iu' name='org.community.feature.feature.group' version='7.1.0.202010311728'/>
-    </provides>
-    <requires size='5'>
-      <required namespace='org.eclipse.equinox.p2.iu' name='org.community.ui.zk.specialeditor' range='[7.1.0.202010311728,7.1.0.202010311728]'/>
-      <required namespace='org.eclipse.equinox.p2.iu' name='org.community.ui.zk.specialeditor_examples' range='[7.1.0.202010311728,7.1.0.202010311728]'/>
-      <required namespace='org.eclipse.equinox.p2.iu' name='org.community.kanban-board' range='[7.1.0.202010311728,7.1.0.202010311728]'/>
-      <required namespace='org.eclipse.equinox.p2.iu' name='org.community.model-generator' range='[7.1.0.202010311728,7.1.0.202010311728]'/>
-      <required namespace='org.eclipse.equinox.p2.iu' name='org.community.feature.feature.jar' range='[7.1.0.202010311728,7.1.0.202010311728]'>
->>>>>>> a12a596727d19a97245d6a89f09de5d070c37c22
+      <required namespace='org.eclipse.equinox.p2.iu' name='org.community.ui.zk.specialeditor' range='[7.1.0.202011041202,7.1.0.202011041202]'/>
+      <required namespace='org.eclipse.equinox.p2.iu' name='org.community.ui.zk.specialeditor_examples' range='[7.1.0.202011041202,7.1.0.202011041202]'/>
+      <required namespace='org.eclipse.equinox.p2.iu' name='org.community.kanban-board' range='[7.1.0.202011041202,7.1.0.202011041202]'/>
+      <required namespace='org.eclipse.equinox.p2.iu' name='org.community.model-generator' range='[7.1.0.202011041202,7.1.0.202011041202]'/>
+      <required namespace='org.eclipse.equinox.p2.iu' name='org.community.feature.feature.jar' range='[7.1.0.202011041202,7.1.0.202011041202]'>
         <filter>
           (org.eclipse.update.install.features=true)
         </filter>
@@ -51,11 +35,7 @@
       [Enter Copyright Description here.]
     </copyright>
   </unit>
-<<<<<<< HEAD
-  <unit id='org.community.feature.feature.jar' version='7.1.0.202010311742'>
-=======
-  <unit id='org.community.feature.feature.jar' version='7.1.0.202010311728'>
->>>>>>> a12a596727d19a97245d6a89f09de5d070c37c22
+  <unit id='org.community.feature.feature.jar' version='7.1.0.202011041202'>
     <properties size='6'>
       <property name='org.eclipse.equinox.p2.name' value='Feature'/>
       <property name='org.eclipse.equinox.p2.description' value='[Enter Feature Description here.]'/>
@@ -65,25 +45,15 @@
       <property name='maven-version' value='7.1.0-SNAPSHOT'/>
     </properties>
     <provides size='3'>
-<<<<<<< HEAD
-      <provided namespace='org.eclipse.equinox.p2.iu' name='org.community.feature.feature.jar' version='7.1.0.202010311742'/>
+      <provided namespace='org.eclipse.equinox.p2.iu' name='org.community.feature.feature.jar' version='7.1.0.202011041202'/>
       <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='feature' version='1.0.0'/>
-      <provided namespace='org.eclipse.update.feature' name='org.community.feature' version='7.1.0.202010311742'/>
-=======
-      <provided namespace='org.eclipse.equinox.p2.iu' name='org.community.feature.feature.jar' version='7.1.0.202010311728'/>
-      <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='feature' version='1.0.0'/>
-      <provided namespace='org.eclipse.update.feature' name='org.community.feature' version='7.1.0.202010311728'/>
->>>>>>> a12a596727d19a97245d6a89f09de5d070c37c22
+      <provided namespace='org.eclipse.update.feature' name='org.community.feature' version='7.1.0.202011041202'/>
     </provides>
     <filter>
       (org.eclipse.update.install.features=true)
     </filter>
     <artifacts size='1'>
-<<<<<<< HEAD
-      <artifact classifier='org.eclipse.update.feature' id='org.community.feature' version='7.1.0.202010311742'/>
-=======
-      <artifact classifier='org.eclipse.update.feature' id='org.community.feature' version='7.1.0.202010311728'/>
->>>>>>> a12a596727d19a97245d6a89f09de5d070c37c22
+      <artifact classifier='org.eclipse.update.feature' id='org.community.feature' version='7.1.0.202011041202'/>
     </artifacts>
     <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
     <touchpointData size='1'>

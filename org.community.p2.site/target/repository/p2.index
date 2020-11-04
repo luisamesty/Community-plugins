@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-#Sat Oct 31 18:43:25 CET 2020
-=======
-#Sat Oct 31 18:29:21 CET 2020
->>>>>>> a12a596727d19a97245d6a89f09de5d070c37c22
+#Wed Nov 04 13:03:13 CET 2020
 artifact.repository.factory.order=artifacts.xml.xz,artifacts.xml,\!
 version=1
 metadata.repository.factory.order=content.xml.xz,content.xml,\!
