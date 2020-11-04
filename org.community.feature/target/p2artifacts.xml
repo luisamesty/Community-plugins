@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <?artifactRepository version='1.1.0'?>
 <artifacts size='1'>
-  <artifact classifier='org.eclipse.update.feature' id='org.community.feature' version='7.1.0.202011041202'>
+  <artifact classifier='org.eclipse.update.feature' id='org.community.feature' version='7.1.0.202011160903'>
     <properties size='6'>
       <property name='artifact.size' value='752'/>
       <property name='download.size' value='752'/>
