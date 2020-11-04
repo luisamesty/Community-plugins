@@ -16,3 +16,5 @@ This plugin help to create model of your tables into a plugin, migrated from swi
 
 - Install the plugin and open the Model Generator Window
 - This plugin is just for eclipse developer mode
+
+### Updated for Idempiere release 8.1 - November 2020
