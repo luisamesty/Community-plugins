@@ -1238,43 +1238,6 @@
         </instructions>
       </touchpointData>
     </unit>
-    <unit id='org.community.feature.feature.jar' version='8.1.0.202011050854'>
-      <properties size='6'>
-        <property name='org.eclipse.equinox.p2.name' value='Feature'/>
-        <property name='org.eclipse.equinox.p2.description' value='[Enter Feature Description here.]'/>
-        <property name='org.eclipse.equinox.p2.description.url' value='http://www.example.com/description'/>
-        <property name='maven-groupId' value='org.idempiere'/>
-        <property name='maven-artifactId' value='org.community.feature'/>
-        <property name='maven-version' value='8.1.0-SNAPSHOT'/>
-      </properties>
-      <provides size='3'>
-        <provided namespace='org.eclipse.equinox.p2.iu' name='org.community.feature.feature.jar' version='8.1.0.202011050854'/>
-        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='feature' version='1.0.0'/>
-        <provided namespace='org.eclipse.update.feature' name='org.community.feature' version='8.1.0.202011050854'/>
-      </provides>
-      <filter>
-        (org.eclipse.update.install.features=true)
-      </filter>
-      <artifacts size='1'>
-        <artifact classifier='org.eclipse.update.feature' id='org.community.feature' version='8.1.0.202011050854'/>
-      </artifacts>
-      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
-      <touchpointData size='1'>
-        <instructions size='1'>
-          <instruction key='zipped'>
-            true
-          </instruction>
-        </instructions>
-      </touchpointData>
-      <licenses size='1'>
-        <license uri='http://www.example.com/license' url='http://www.example.com/license'>
-          [Enter License Description here.]
-        </license>
-      </licenses>
-      <copyright uri='http://www.example.com/copyright' url='http://www.example.com/copyright'>
-        [Enter Copyright Description here.]
-      </copyright>
-    </unit>
     <unit id='org.apache.ecs' version='8.1.0.202011041101' singleton='false' generation='2'>
       <update id='org.apache.ecs' range='[0.0.0,8.1.0.202011041101)' severity='0'/>
       <properties size='5'>
@@ -1552,6 +1515,56 @@
         <instructions size='1'>
           <instruction key='manifest'>
             Bundle-SymbolicName: org.eclipse.equinox.preferences; singleton:=true&#xA;Bundle-Version: 3.8.0.v20200422-1833
+          </instruction>
+        </instructions>
+      </touchpointData>
+    </unit>
+    <unit id='org.community.model-generator' version='8.1.0.202011231053' generation='2'>
+      <update id='org.community.model-generator' range='[0.0.0,8.1.0.202011231053)' severity='0'/>
+      <properties size='5'>
+        <property name='org.eclipse.equinox.p2.name' value='INGEINT Model Generator'/>
+        <property name='org.eclipse.equinox.p2.provider' value='INGEINT &lt;https:www.//ingeint.com&gt;'/>
+        <property name='maven-groupId' value='org.idempiere'/>
+        <property name='maven-artifactId' value='org.community.model-generator'/>
+        <property name='maven-version' value='8.1.0-SNAPSHOT'/>
+      </properties>
+      <provides size='4'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='org.community.model-generator' version='8.1.0.202011231053'/>
+        <provided namespace='osgi.bundle' name='org.community.model-generator' version='8.1.0.202011231053'/>
+        <provided namespace='osgi.identity' name='org.community.model-generator' version='8.1.0.202011231053'>
+          <properties size='1'>
+            <property name='type' value='osgi.bundle'/>
+          </properties>
+        </provided>
+        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+      </provides>
+      <requires size='13'>
+        <required namespace='osgi.bundle' name='org.adempiere.base' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.adempiere.plugin.utils' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.adempiere.ui.zk' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='zcommon' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='zel' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='zhtml' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='zk' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='zkbind' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='zkplus' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='zul' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='zweb' range='0.0.0'/>
+        <required namespace='java.package' name='org.osgi.service.event' range='1.3.0'/>
+        <requiredProperties namespace='osgi.ee' match='(&amp;(osgi.ee=JavaSE)(version=11))'>
+          <description>
+            org.community.model-generator
+          </description>
+        </requiredProperties>
+      </requires>
+      <artifacts size='1'>
+        <artifact classifier='osgi.bundle' id='org.community.model-generator' version='8.1.0.202011231053'/>
+      </artifacts>
+      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+      <touchpointData size='1'>
+        <instructions size='1'>
+          <instruction key='manifest'>
+            Bundle-SymbolicName: org.community.model-generator;singleton:=true&#xA;Bundle-Version: 8.1.0.202011231053
           </instruction>
         </instructions>
       </touchpointData>
@@ -1874,66 +1887,6 @@
         </instructions>
       </touchpointData>
     </unit>
-    <unit id='org.community.ui.zk.specialeditor' version='8.1.0.202011050854' generation='2'>
-      <update id='org.community.ui.zk.specialeditor' range='[0.0.0,8.1.0.202011050854)' severity='0'/>
-      <properties size='4'>
-        <property name='org.eclipse.equinox.p2.name' value='Specialeditor'/>
-        <property name='maven-groupId' value='org.idempiere'/>
-        <property name='maven-artifactId' value='org.community.ui.zk.specialeditor'/>
-        <property name='maven-version' value='8.1.0-SNAPSHOT'/>
-      </properties>
-      <provides size='6'>
-        <provided namespace='org.eclipse.equinox.p2.iu' name='org.community.ui.zk.specialeditor' version='8.1.0.202011050854'/>
-        <provided namespace='osgi.bundle' name='org.community.ui.zk.specialeditor' version='8.1.0.202011050854'/>
-        <provided namespace='java.package' name='action.images' version='0.0.0'/>
-        <provided namespace='java.package' name='org.idempiere.base' version='0.0.0'/>
-        <provided namespace='osgi.identity' name='org.community.ui.zk.specialeditor' version='8.1.0.202011050854'>
-          <properties size='1'>
-            <property name='type' value='osgi.bundle'/>
-          </properties>
-        </provided>
-        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
-      </provides>
-      <requires size='22'>
-        <required namespace='osgi.bundle' name='zcommon' range='0.0.0'/>
-        <required namespace='osgi.bundle' name='zel' range='0.0.0'/>
-        <required namespace='osgi.bundle' name='zhtml' range='0.0.0'/>
-        <required namespace='osgi.bundle' name='zk' range='0.0.0'/>
-        <required namespace='osgi.bundle' name='zkbind' range='0.0.0'/>
-        <required namespace='osgi.bundle' name='zkplus' range='0.0.0'/>
-        <required namespace='osgi.bundle' name='zul' range='0.0.0'/>
-        <required namespace='osgi.bundle' name='zweb' range='0.0.0'/>
-        <required namespace='java.package' name='org.adempiere.base' range='0.0.0'/>
-        <required namespace='java.package' name='org.adempiere.exceptions' range='0.0.0'/>
-        <required namespace='java.package' name='org.adempiere.plugin.utils' range='0.0.0'/>
-        <required namespace='java.package' name='org.adempiere.webui.action' range='0.0.0'/>
-        <required namespace='java.package' name='org.adempiere.webui.adwindow' range='0.0.0'/>
-        <required namespace='java.package' name='org.adempiere.webui.apps' range='0.0.0'/>
-        <required namespace='java.package' name='org.adempiere.webui.component' range='0.0.0'/>
-        <required namespace='java.package' name='org.adempiere.webui.editor' range='0.0.0'/>
-        <required namespace='java.package' name='org.adempiere.webui.event' range='0.0.0'/>
-        <required namespace='java.package' name='org.adempiere.webui.window' range='0.0.0'/>
-        <required namespace='java.package' name='org.compiere.model' range='0.0.0'/>
-        <required namespace='java.package' name='org.compiere.util' range='0.0.0'/>
-        <required namespace='java.package' name='org.osgi.framework' range='0.0.0'/>
-        <requiredProperties namespace='osgi.ee' match='(&amp;(osgi.ee=JavaSE)(version=11))'>
-          <description>
-            org.community.ui.zk.specialeditor
-          </description>
-        </requiredProperties>
-      </requires>
-      <artifacts size='1'>
-        <artifact classifier='osgi.bundle' id='org.community.ui.zk.specialeditor' version='8.1.0.202011050854'/>
-      </artifacts>
-      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
-      <touchpointData size='1'>
-        <instructions size='1'>
-          <instruction key='manifest'>
-            Bundle-SymbolicName: org.community.ui.zk.specialeditor;singleton:=true&#xA;Bundle-Version: 8.1.0.202011050854
-          </instruction>
-        </instructions>
-      </touchpointData>
-    </unit>
     <unit id='org.apache.aries.spifly.dynamic.bundle' version='1.3.2' singleton='false' generation='2'>
       <update id='org.apache.aries.spifly.dynamic.bundle' range='[0.0.0,1.3.2)' severity='0'/>
       <properties size='4'>
@@ -2095,6 +2048,43 @@
         </instructions>
       </touchpointData>
     </unit>
+    <unit id='org.community.feature.feature.jar' version='8.1.0.202011231053'>
+      <properties size='6'>
+        <property name='org.eclipse.equinox.p2.name' value='Feature'/>
+        <property name='org.eclipse.equinox.p2.description' value='[Enter Feature Description here.]'/>
+        <property name='org.eclipse.equinox.p2.description.url' value='http://www.example.com/description'/>
+        <property name='maven-groupId' value='org.idempiere'/>
+        <property name='maven-artifactId' value='org.community.feature'/>
+        <property name='maven-version' value='8.1.0-SNAPSHOT'/>
+      </properties>
+      <provides size='3'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='org.community.feature.feature.jar' version='8.1.0.202011231053'/>
+        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='feature' version='1.0.0'/>
+        <provided namespace='org.eclipse.update.feature' name='org.community.feature' version='8.1.0.202011231053'/>
+      </provides>
+      <filter>
+        (org.eclipse.update.install.features=true)
+      </filter>
+      <artifacts size='1'>
+        <artifact classifier='org.eclipse.update.feature' id='org.community.feature' version='8.1.0.202011231053'/>
+      </artifacts>
+      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+      <touchpointData size='1'>
+        <instructions size='1'>
+          <instruction key='zipped'>
+            true
+          </instruction>
+        </instructions>
+      </touchpointData>
+      <licenses size='1'>
+        <license uri='http://www.example.com/license' url='http://www.example.com/license'>
+          [Enter License Description here.]
+        </license>
+      </licenses>
+      <copyright uri='http://www.example.com/copyright' url='http://www.example.com/copyright'>
+        [Enter Copyright Description here.]
+      </copyright>
+    </unit>
     <unit id='org.objectweb.asm.tree' version='9.0.0' singleton='false' generation='2'>
       <update id='org.objectweb.asm.tree' range='[0.0.0,9.0.0)' severity='0'/>
       <properties size='2'>
@@ -2124,6 +2114,60 @@
         <instructions size='1'>
           <instruction key='manifest'>
             Bundle-SymbolicName: org.objectweb.asm.tree&#xA;Bundle-Version: 9.0.0
+          </instruction>
+        </instructions>
+      </touchpointData>
+    </unit>
+    <unit id='org.community.ui.zk.specialeditor_examples' version='8.1.0.202011231053' generation='2'>
+      <update id='org.community.ui.zk.specialeditor_examples' range='[0.0.0,8.1.0.202011231053)' severity='0'/>
+      <properties size='4'>
+        <property name='org.eclipse.equinox.p2.name' value='Specialeditor_examples'/>
+        <property name='maven-groupId' value='org.idempiere'/>
+        <property name='maven-artifactId' value='org.community.ui.zk.specialeditor_examples'/>
+        <property name='maven-version' value='8.1.0-SNAPSHOT'/>
+      </properties>
+      <provides size='5'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='org.community.ui.zk.specialeditor_examples' version='8.1.0.202011231053'/>
+        <provided namespace='osgi.bundle' name='org.community.ui.zk.specialeditor_examples' version='8.1.0.202011231053'/>
+        <provided namespace='java.package' name='org.idempiere.extend' version='0.0.0'/>
+        <provided namespace='osgi.identity' name='org.community.ui.zk.specialeditor_examples' version='8.1.0.202011231053'>
+          <properties size='1'>
+            <property name='type' value='osgi.bundle'/>
+          </properties>
+        </provided>
+        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+      </provides>
+      <requires size='17'>
+        <required namespace='osgi.bundle' name='org.adempiere.base' range='8.1.0'/>
+        <required namespace='osgi.bundle' name='org.community.ui.zk.specialeditor' range='8.1.0'/>
+        <required namespace='osgi.bundle' name='zcommon' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='zel' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='zhtml' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='zk' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='zkbind' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='zkplus' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='zul' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='zweb' range='0.0.0'/>
+        <required namespace='java.package' name='org.adempiere.base' range='0.0.0'/>
+        <required namespace='java.package' name='org.adempiere.exceptions' range='0.0.0'/>
+        <required namespace='java.package' name='org.adempiere.plugin.utils' range='0.0.0'/>
+        <required namespace='java.package' name='org.compiere.model' range='0.0.0'/>
+        <required namespace='java.package' name='org.compiere.util' range='0.0.0'/>
+        <required namespace='java.package' name='org.osgi.framework' range='0.0.0'/>
+        <requiredProperties namespace='osgi.ee' match='(&amp;(osgi.ee=JavaSE)(version=11))'>
+          <description>
+            org.community.ui.zk.specialeditor_examples
+          </description>
+        </requiredProperties>
+      </requires>
+      <artifacts size='1'>
+        <artifact classifier='osgi.bundle' id='org.community.ui.zk.specialeditor_examples' version='8.1.0.202011231053'/>
+      </artifacts>
+      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+      <touchpointData size='1'>
+        <instructions size='1'>
+          <instruction key='manifest'>
+            Bundle-SymbolicName: org.community.ui.zk.specialeditor_examples;singleton:=true&#xA;Bundle-Version: 8.1.0.202011231053
           </instruction>
         </instructions>
       </touchpointData>
@@ -2771,61 +2815,6 @@
         <instructions size='1'>
           <instruction key='manifest'>
             Bundle-SymbolicName: org.apache.servicemix.bundles.spring-web&#xA;Bundle-Version: 4.3.19.RELEASE_1
-          </instruction>
-        </instructions>
-      </touchpointData>
-    </unit>
-    <unit id='org.community.kanban-board' version='8.1.0.202011050854' generation='2'>
-      <update id='org.community.kanban-board' range='[0.0.0,8.1.0.202011050854)' severity='0'/>
-      <properties size='5'>
-        <property name='org.eclipse.equinox.p2.name' value='KanbanBoard'/>
-        <property name='org.eclipse.equinox.p2.provider' value='Diego Ruiz'/>
-        <property name='maven-groupId' value='org.idempiere'/>
-        <property name='maven-artifactId' value='org.community.kanban-board'/>
-        <property name='maven-version' value='8.1.0-SNAPSHOT'/>
-      </properties>
-      <provides size='9'>
-        <provided namespace='org.eclipse.equinox.p2.iu' name='org.community.kanban-board' version='8.1.0.202011050854'/>
-        <provided namespace='osgi.bundle' name='org.community.kanban-board' version='8.1.0.202011050854'/>
-        <provided namespace='java.package' name='org.kanbanboard.apps.form' version='0.0.0'/>
-        <provided namespace='java.package' name='org.kanbanboard.model' version='0.0.0'/>
-        <provided namespace='java.package' name='org.kanbanboard.process' version='0.0.0'/>
-        <provided namespace='java.package' name='org.kanbanboard.webui.apps.form' version='0.0.0'/>
-        <provided namespace='java.package' name='org.kanbanboard.webui.factory' version='0.0.0'/>
-        <provided namespace='osgi.identity' name='org.community.kanban-board' version='8.1.0.202011050854'>
-          <properties size='1'>
-            <property name='type' value='osgi.bundle'/>
-          </properties>
-        </provided>
-        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
-      </provides>
-      <requires size='13'>
-        <required namespace='osgi.bundle' name='org.adempiere.base' range='0.0.0'/>
-        <required namespace='osgi.bundle' name='org.adempiere.plugin.utils' range='0.0.0'/>
-        <required namespace='osgi.bundle' name='org.adempiere.ui.zk' range='0.0.0'/>
-        <required namespace='osgi.bundle' name='zcommon' range='0.0.0'/>
-        <required namespace='osgi.bundle' name='zel' range='0.0.0'/>
-        <required namespace='osgi.bundle' name='zhtml' range='0.0.0'/>
-        <required namespace='osgi.bundle' name='zk' range='0.0.0'/>
-        <required namespace='osgi.bundle' name='zkbind' range='0.0.0'/>
-        <required namespace='osgi.bundle' name='zkplus' range='0.0.0'/>
-        <required namespace='osgi.bundle' name='zul' range='0.0.0'/>
-        <required namespace='osgi.bundle' name='zweb' range='0.0.0'/>
-        <required namespace='java.package' name='org.compiere.apps' range='0.0.0'/>
-        <requiredProperties namespace='osgi.ee' match='(&amp;(osgi.ee=JavaSE)(version=11))'>
-          <description>
-            org.community.kanban-board
-          </description>
-        </requiredProperties>
-      </requires>
-      <artifacts size='1'>
-        <artifact classifier='osgi.bundle' id='org.community.kanban-board' version='8.1.0.202011050854'/>
-      </artifacts>
-      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
-      <touchpointData size='1'>
-        <instructions size='1'>
-          <instruction key='manifest'>
-            Bundle-SymbolicName: org.community.kanban-board;singleton:=true&#xA;Bundle-Version: 8.1.0.202011050854
           </instruction>
         </instructions>
       </touchpointData>
@@ -4230,6 +4219,61 @@
         </instructions>
       </touchpointData>
     </unit>
+    <unit id='org.community.kanban-board' version='8.1.0.202011231053' generation='2'>
+      <update id='org.community.kanban-board' range='[0.0.0,8.1.0.202011231053)' severity='0'/>
+      <properties size='5'>
+        <property name='org.eclipse.equinox.p2.name' value='KanbanBoard'/>
+        <property name='org.eclipse.equinox.p2.provider' value='Diego Ruiz'/>
+        <property name='maven-groupId' value='org.idempiere'/>
+        <property name='maven-artifactId' value='org.community.kanban-board'/>
+        <property name='maven-version' value='8.1.0-SNAPSHOT'/>
+      </properties>
+      <provides size='9'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='org.community.kanban-board' version='8.1.0.202011231053'/>
+        <provided namespace='osgi.bundle' name='org.community.kanban-board' version='8.1.0.202011231053'/>
+        <provided namespace='java.package' name='org.kanbanboard.apps.form' version='0.0.0'/>
+        <provided namespace='java.package' name='org.kanbanboard.model' version='0.0.0'/>
+        <provided namespace='java.package' name='org.kanbanboard.process' version='0.0.0'/>
+        <provided namespace='java.package' name='org.kanbanboard.webui.apps.form' version='0.0.0'/>
+        <provided namespace='java.package' name='org.kanbanboard.webui.factory' version='0.0.0'/>
+        <provided namespace='osgi.identity' name='org.community.kanban-board' version='8.1.0.202011231053'>
+          <properties size='1'>
+            <property name='type' value='osgi.bundle'/>
+          </properties>
+        </provided>
+        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+      </provides>
+      <requires size='13'>
+        <required namespace='osgi.bundle' name='org.adempiere.base' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.adempiere.plugin.utils' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.adempiere.ui.zk' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='zcommon' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='zel' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='zhtml' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='zk' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='zkbind' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='zkplus' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='zul' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='zweb' range='0.0.0'/>
+        <required namespace='java.package' name='org.compiere.apps' range='0.0.0'/>
+        <requiredProperties namespace='osgi.ee' match='(&amp;(osgi.ee=JavaSE)(version=11))'>
+          <description>
+            org.community.kanban-board
+          </description>
+        </requiredProperties>
+      </requires>
+      <artifacts size='1'>
+        <artifact classifier='osgi.bundle' id='org.community.kanban-board' version='8.1.0.202011231053'/>
+      </artifacts>
+      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+      <touchpointData size='1'>
+        <instructions size='1'>
+          <instruction key='manifest'>
+            Bundle-SymbolicName: org.community.kanban-board;singleton:=true&#xA;Bundle-Version: 8.1.0.202011231053
+          </instruction>
+        </instructions>
+      </touchpointData>
+    </unit>
     <unit id='jakarta.annotation-api' version='1.3.5' singleton='false' generation='2'>
       <update id='jakarta.annotation-api' range='[0.0.0,1.3.5)' severity='0'/>
       <properties size='4'>
@@ -5574,41 +5618,6 @@
           </instruction>
         </instructions>
       </touchpointData>
-    </unit>
-    <unit id='org.community.feature.feature.group' version='8.1.0.202011050854' singleton='false'>
-      <update id='org.community.feature.feature.group' range='[0.0.0,8.1.0.202011050854)' severity='0'/>
-      <properties size='7'>
-        <property name='org.eclipse.equinox.p2.name' value='Feature'/>
-        <property name='org.eclipse.equinox.p2.description' value='[Enter Feature Description here.]'/>
-        <property name='org.eclipse.equinox.p2.description.url' value='http://www.example.com/description'/>
-        <property name='org.eclipse.equinox.p2.type.group' value='true'/>
-        <property name='maven-groupId' value='org.idempiere'/>
-        <property name='maven-artifactId' value='org.community.feature'/>
-        <property name='maven-version' value='8.1.0-SNAPSHOT'/>
-      </properties>
-      <provides size='1'>
-        <provided namespace='org.eclipse.equinox.p2.iu' name='org.community.feature.feature.group' version='8.1.0.202011050854'/>
-      </provides>
-      <requires size='5'>
-        <required namespace='org.eclipse.equinox.p2.iu' name='org.community.ui.zk.specialeditor' range='[8.1.0.202011050854,8.1.0.202011050854]'/>
-        <required namespace='org.eclipse.equinox.p2.iu' name='org.community.ui.zk.specialeditor_examples' range='[8.1.0.202011050854,8.1.0.202011050854]'/>
-        <required namespace='org.eclipse.equinox.p2.iu' name='org.community.kanban-board' range='[8.1.0.202011050854,8.1.0.202011050854]'/>
-        <required namespace='org.eclipse.equinox.p2.iu' name='org.community.model-generator' range='[8.1.0.202011050854,8.1.0.202011050854]'/>
-        <required namespace='org.eclipse.equinox.p2.iu' name='org.community.feature.feature.jar' range='[8.1.0.202011050854,8.1.0.202011050854]'>
-          <filter>
-            (org.eclipse.update.install.features=true)
-          </filter>
-        </required>
-      </requires>
-      <touchpoint id='null' version='0.0.0'/>
-      <licenses size='1'>
-        <license uri='http://www.example.com/license' url='http://www.example.com/license'>
-          [Enter License Description here.]
-        </license>
-      </licenses>
-      <copyright uri='http://www.example.com/copyright' url='http://www.example.com/copyright'>
-        [Enter Copyright Description here.]
-      </copyright>
     </unit>
     <unit id='org.apache.servicemix.bundles.spring-core' version='4.3.19.RELEASE_1' singleton='false' generation='2'>
       <update id='org.apache.servicemix.bundles.spring-core' range='[0.0.0,4.3.19.RELEASE_1)' severity='0'/>
@@ -7831,6 +7840,66 @@
         </instructions>
       </touchpointData>
     </unit>
+    <unit id='org.community.ui.zk.specialeditor' version='8.1.0.202011231053' generation='2'>
+      <update id='org.community.ui.zk.specialeditor' range='[0.0.0,8.1.0.202011231053)' severity='0'/>
+      <properties size='4'>
+        <property name='org.eclipse.equinox.p2.name' value='Specialeditor'/>
+        <property name='maven-groupId' value='org.idempiere'/>
+        <property name='maven-artifactId' value='org.community.ui.zk.specialeditor'/>
+        <property name='maven-version' value='8.1.0-SNAPSHOT'/>
+      </properties>
+      <provides size='6'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='org.community.ui.zk.specialeditor' version='8.1.0.202011231053'/>
+        <provided namespace='osgi.bundle' name='org.community.ui.zk.specialeditor' version='8.1.0.202011231053'/>
+        <provided namespace='java.package' name='action.images' version='0.0.0'/>
+        <provided namespace='java.package' name='org.idempiere.base' version='0.0.0'/>
+        <provided namespace='osgi.identity' name='org.community.ui.zk.specialeditor' version='8.1.0.202011231053'>
+          <properties size='1'>
+            <property name='type' value='osgi.bundle'/>
+          </properties>
+        </provided>
+        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+      </provides>
+      <requires size='22'>
+        <required namespace='osgi.bundle' name='zcommon' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='zel' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='zhtml' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='zk' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='zkbind' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='zkplus' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='zul' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='zweb' range='0.0.0'/>
+        <required namespace='java.package' name='org.adempiere.base' range='0.0.0'/>
+        <required namespace='java.package' name='org.adempiere.exceptions' range='0.0.0'/>
+        <required namespace='java.package' name='org.adempiere.plugin.utils' range='0.0.0'/>
+        <required namespace='java.package' name='org.adempiere.webui.action' range='0.0.0'/>
+        <required namespace='java.package' name='org.adempiere.webui.adwindow' range='0.0.0'/>
+        <required namespace='java.package' name='org.adempiere.webui.apps' range='0.0.0'/>
+        <required namespace='java.package' name='org.adempiere.webui.component' range='0.0.0'/>
+        <required namespace='java.package' name='org.adempiere.webui.editor' range='0.0.0'/>
+        <required namespace='java.package' name='org.adempiere.webui.event' range='0.0.0'/>
+        <required namespace='java.package' name='org.adempiere.webui.window' range='0.0.0'/>
+        <required namespace='java.package' name='org.compiere.model' range='0.0.0'/>
+        <required namespace='java.package' name='org.compiere.util' range='0.0.0'/>
+        <required namespace='java.package' name='org.osgi.framework' range='0.0.0'/>
+        <requiredProperties namespace='osgi.ee' match='(&amp;(osgi.ee=JavaSE)(version=11))'>
+          <description>
+            org.community.ui.zk.specialeditor
+          </description>
+        </requiredProperties>
+      </requires>
+      <artifacts size='1'>
+        <artifact classifier='osgi.bundle' id='org.community.ui.zk.specialeditor' version='8.1.0.202011231053'/>
+      </artifacts>
+      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+      <touchpointData size='1'>
+        <instructions size='1'>
+          <instruction key='manifest'>
+            Bundle-SymbolicName: org.community.ui.zk.specialeditor;singleton:=true&#xA;Bundle-Version: 8.1.0.202011231053
+          </instruction>
+        </instructions>
+      </touchpointData>
+    </unit>
     <unit id='javax.websocket-api' version='1.1.0' singleton='false'>
       <update id='javax.websocket-api' range='[0.0.0,1.1.0)' severity='0'/>
       <properties size='4'>
@@ -7863,59 +7932,40 @@
         </instructions>
       </touchpointData>
     </unit>
-    <unit id='org.community.ui.zk.specialeditor_examples' version='8.1.0.202011050854' generation='2'>
-      <update id='org.community.ui.zk.specialeditor_examples' range='[0.0.0,8.1.0.202011050854)' severity='0'/>
-      <properties size='4'>
-        <property name='org.eclipse.equinox.p2.name' value='Specialeditor_examples'/>
+    <unit id='org.community.feature.feature.group' version='8.1.0.202011231053' singleton='false'>
+      <update id='org.community.feature.feature.group' range='[0.0.0,8.1.0.202011231053)' severity='0'/>
+      <properties size='7'>
+        <property name='org.eclipse.equinox.p2.name' value='Feature'/>
+        <property name='org.eclipse.equinox.p2.description' value='[Enter Feature Description here.]'/>
+        <property name='org.eclipse.equinox.p2.description.url' value='http://www.example.com/description'/>
+        <property name='org.eclipse.equinox.p2.type.group' value='true'/>
         <property name='maven-groupId' value='org.idempiere'/>
-        <property name='maven-artifactId' value='org.community.ui.zk.specialeditor_examples'/>
+        <property name='maven-artifactId' value='org.community.feature'/>
         <property name='maven-version' value='8.1.0-SNAPSHOT'/>
       </properties>
-      <provides size='5'>
-        <provided namespace='org.eclipse.equinox.p2.iu' name='org.community.ui.zk.specialeditor_examples' version='8.1.0.202011050854'/>
-        <provided namespace='osgi.bundle' name='org.community.ui.zk.specialeditor_examples' version='8.1.0.202011050854'/>
-        <provided namespace='java.package' name='org.idempiere.extend' version='0.0.0'/>
-        <provided namespace='osgi.identity' name='org.community.ui.zk.specialeditor_examples' version='8.1.0.202011050854'>
-          <properties size='1'>
-            <property name='type' value='osgi.bundle'/>
-          </properties>
-        </provided>
-        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+      <provides size='1'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='org.community.feature.feature.group' version='8.1.0.202011231053'/>
       </provides>
-      <requires size='17'>
-        <required namespace='osgi.bundle' name='org.adempiere.base' range='8.1.0'/>
-        <required namespace='osgi.bundle' name='org.community.ui.zk.specialeditor' range='8.1.0'/>
-        <required namespace='osgi.bundle' name='zcommon' range='0.0.0'/>
-        <required namespace='osgi.bundle' name='zel' range='0.0.0'/>
-        <required namespace='osgi.bundle' name='zhtml' range='0.0.0'/>
-        <required namespace='osgi.bundle' name='zk' range='0.0.0'/>
-        <required namespace='osgi.bundle' name='zkbind' range='0.0.0'/>
-        <required namespace='osgi.bundle' name='zkplus' range='0.0.0'/>
-        <required namespace='osgi.bundle' name='zul' range='0.0.0'/>
-        <required namespace='osgi.bundle' name='zweb' range='0.0.0'/>
-        <required namespace='java.package' name='org.adempiere.base' range='0.0.0'/>
-        <required namespace='java.package' name='org.adempiere.exceptions' range='0.0.0'/>
-        <required namespace='java.package' name='org.adempiere.plugin.utils' range='0.0.0'/>
-        <required namespace='java.package' name='org.compiere.model' range='0.0.0'/>
-        <required namespace='java.package' name='org.compiere.util' range='0.0.0'/>
-        <required namespace='java.package' name='org.osgi.framework' range='0.0.0'/>
-        <requiredProperties namespace='osgi.ee' match='(&amp;(osgi.ee=JavaSE)(version=11))'>
-          <description>
-            org.community.ui.zk.specialeditor_examples
-          </description>
-        </requiredProperties>
+      <requires size='5'>
+        <required namespace='org.eclipse.equinox.p2.iu' name='org.community.ui.zk.specialeditor' range='[8.1.0.202011231053,8.1.0.202011231053]'/>
+        <required namespace='org.eclipse.equinox.p2.iu' name='org.community.ui.zk.specialeditor_examples' range='[8.1.0.202011231053,8.1.0.202011231053]'/>
+        <required namespace='org.eclipse.equinox.p2.iu' name='org.community.kanban-board' range='[8.1.0.202011231053,8.1.0.202011231053]'/>
+        <required namespace='org.eclipse.equinox.p2.iu' name='org.community.model-generator' range='[8.1.0.202011231053,8.1.0.202011231053]'/>
+        <required namespace='org.eclipse.equinox.p2.iu' name='org.community.feature.feature.jar' range='[8.1.0.202011231053,8.1.0.202011231053]'>
+          <filter>
+            (org.eclipse.update.install.features=true)
+          </filter>
+        </required>
       </requires>
-      <artifacts size='1'>
-        <artifact classifier='osgi.bundle' id='org.community.ui.zk.specialeditor_examples' version='8.1.0.202011050854'/>
-      </artifacts>
-      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
-      <touchpointData size='1'>
-        <instructions size='1'>
-          <instruction key='manifest'>
-            Bundle-SymbolicName: org.community.ui.zk.specialeditor_examples;singleton:=true&#xA;Bundle-Version: 8.1.0.202011050854
-          </instruction>
-        </instructions>
-      </touchpointData>
+      <touchpoint id='null' version='0.0.0'/>
+      <licenses size='1'>
+        <license uri='http://www.example.com/license' url='http://www.example.com/license'>
+          [Enter License Description here.]
+        </license>
+      </licenses>
+      <copyright uri='http://www.example.com/copyright' url='http://www.example.com/copyright'>
+        [Enter Copyright Description here.]
+      </copyright>
     </unit>
     <unit id='zk' version='9.5.0.1' singleton='false'>
       <update id='zk' range='[0.0.0,9.5.0.1)' severity='0'/>
@@ -8711,56 +8761,6 @@
         <instructions size='1'>
           <instruction key='manifest'>
             Bundle-SymbolicName: org.apache.commons.compress&#xA;Bundle-Version: 1.19.0.v20200106-2343
-          </instruction>
-        </instructions>
-      </touchpointData>
-    </unit>
-    <unit id='org.community.model-generator' version='8.1.0.202011050854' generation='2'>
-      <update id='org.community.model-generator' range='[0.0.0,8.1.0.202011050854)' severity='0'/>
-      <properties size='5'>
-        <property name='org.eclipse.equinox.p2.name' value='INGEINT Model Generator'/>
-        <property name='org.eclipse.equinox.p2.provider' value='INGEINT &lt;https:www.//ingeint.com&gt;'/>
-        <property name='maven-groupId' value='org.idempiere'/>
-        <property name='maven-artifactId' value='org.community.model-generator'/>
-        <property name='maven-version' value='8.1.0-SNAPSHOT'/>
-      </properties>
-      <provides size='4'>
-        <provided namespace='org.eclipse.equinox.p2.iu' name='org.community.model-generator' version='8.1.0.202011050854'/>
-        <provided namespace='osgi.bundle' name='org.community.model-generator' version='8.1.0.202011050854'/>
-        <provided namespace='osgi.identity' name='org.community.model-generator' version='8.1.0.202011050854'>
-          <properties size='1'>
-            <property name='type' value='osgi.bundle'/>
-          </properties>
-        </provided>
-        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
-      </provides>
-      <requires size='13'>
-        <required namespace='osgi.bundle' name='org.adempiere.base' range='0.0.0'/>
-        <required namespace='osgi.bundle' name='org.adempiere.plugin.utils' range='0.0.0'/>
-        <required namespace='osgi.bundle' name='org.adempiere.ui.zk' range='0.0.0'/>
-        <required namespace='osgi.bundle' name='zcommon' range='0.0.0'/>
-        <required namespace='osgi.bundle' name='zel' range='0.0.0'/>
-        <required namespace='osgi.bundle' name='zhtml' range='0.0.0'/>
-        <required namespace='osgi.bundle' name='zk' range='0.0.0'/>
-        <required namespace='osgi.bundle' name='zkbind' range='0.0.0'/>
-        <required namespace='osgi.bundle' name='zkplus' range='0.0.0'/>
-        <required namespace='osgi.bundle' name='zul' range='0.0.0'/>
-        <required namespace='osgi.bundle' name='zweb' range='0.0.0'/>
-        <required namespace='java.package' name='org.osgi.service.event' range='1.3.0'/>
-        <requiredProperties namespace='osgi.ee' match='(&amp;(osgi.ee=JavaSE)(version=11))'>
-          <description>
-            org.community.model-generator
-          </description>
-        </requiredProperties>
-      </requires>
-      <artifacts size='1'>
-        <artifact classifier='osgi.bundle' id='org.community.model-generator' version='8.1.0.202011050854'/>
-      </artifacts>
-      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
-      <touchpointData size='1'>
-        <instructions size='1'>
-          <instruction key='manifest'>
-            Bundle-SymbolicName: org.community.model-generator;singleton:=true&#xA;Bundle-Version: 8.1.0.202011050854
           </instruction>
         </instructions>
       </touchpointData>
