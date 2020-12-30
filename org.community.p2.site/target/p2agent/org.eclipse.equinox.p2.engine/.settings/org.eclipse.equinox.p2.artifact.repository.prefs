@@ -17,6 +17,12 @@ repositories/file\:_Users_luisamesty_sources_Community-plugins_idempiere-special
 repositories/file\:_Users_luisamesty_sources_Community-plugins_idempiere-special-editor_target/provider=
 repositories/file\:_Users_luisamesty_sources_Community-plugins_idempiere-special-editor_target/suffix=p2artifacts.xml
 repositories/file\:_Users_luisamesty_sources_Community-plugins_idempiere-special-editor_target/uri=file\:/Users/luisamesty/sources/Community-plugins/idempiere-special-editor/target/
+repositories/file\:_Users_luisamesty_sources_Community-plugins_jpiere.plugin.groupware_target/description=
+repositories/file\:_Users_luisamesty_sources_Community-plugins_jpiere.plugin.groupware_target/enabled=true
+repositories/file\:_Users_luisamesty_sources_Community-plugins_jpiere.plugin.groupware_target/isSystem=false
+repositories/file\:_Users_luisamesty_sources_Community-plugins_jpiere.plugin.groupware_target/provider=
+repositories/file\:_Users_luisamesty_sources_Community-plugins_jpiere.plugin.groupware_target/suffix=p2artifacts.xml
+repositories/file\:_Users_luisamesty_sources_Community-plugins_jpiere.plugin.groupware_target/uri=file\:/Users/luisamesty/sources/Community-plugins/jpiere.plugin.groupware/target/
 repositories/file\:_Users_luisamesty_sources_Community-plugins_org.community.feature_target/description=
 repositories/file\:_Users_luisamesty_sources_Community-plugins_org.community.feature_target/enabled=true
 repositories/file\:_Users_luisamesty_sources_Community-plugins_org.community.feature_target/isSystem=false
