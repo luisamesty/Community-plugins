@@ -12,6 +12,5 @@
   	<module>org.community.p2.targetplatform</module>
   	<module>org.community.kanban-board</module>
   	<module>org.community.model-generator</module>
-  	<module>jpiere.plugin.groupware</module>
   </modules>
 </project>
