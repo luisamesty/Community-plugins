@@ -1,7 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <?artifactRepository version='1.1.0'?>
 <artifacts size='1'>
+<<<<<<< HEAD
   <artifact classifier='org.eclipse.update.feature' id='org.community.feature' version='8.2.0.202112171440'>
+=======
+  <artifact classifier='org.eclipse.update.feature' id='org.community.feature' version='8.2.0.202104271507'>
+>>>>>>> branch 'master' of https://github.com/luisamesty/Community-plugins
     <properties size='6'>
       <property name='artifact.size' value='776'/>
       <property name='download.size' value='776'/>

@@ -2,7 +2,11 @@
 <feature
       id="org.community.feature"
       label="Feature"
+<<<<<<< HEAD
       version="8.2.0.202112171440">
+=======
+      version="8.2.0.202104271507">
+>>>>>>> branch 'master' of https://github.com/luisamesty/Community-plugins
 
    <description url="http://www.example.com/description">
       [Enter Feature Description here.]
@@ -20,33 +24,53 @@
          id="org.community.ui.zk.specialeditor"
          download-size="19"
          install-size="32"
+<<<<<<< HEAD
          version="8.2.0.202112171440"
+=======
+         version="8.2.0.202104271507"
+>>>>>>> branch 'master' of https://github.com/luisamesty/Community-plugins
          unpack="false"/>
 
    <plugin
          id="org.community.ui.zk.specialeditor_examples"
          download-size="105"
          install-size="220"
+<<<<<<< HEAD
          version="8.2.0.202112171440"
+=======
+         version="8.2.0.202104271507"
+>>>>>>> branch 'master' of https://github.com/luisamesty/Community-plugins
          unpack="false"/>
 
    <plugin
          id="org.community.kanban-board"
          download-size="206"
          install-size="300"
+<<<<<<< HEAD
          version="8.2.0.202112171440"/>
+=======
+         version="8.2.0.202104271507"/>
+>>>>>>> branch 'master' of https://github.com/luisamesty/Community-plugins
 
    <plugin
          id="org.community.model-generator"
          download-size="49"
          install-size="77"
+<<<<<<< HEAD
          version="8.2.0.202112171440"/>
+=======
+         version="8.2.0.202104271507"/>
+>>>>>>> branch 'master' of https://github.com/luisamesty/Community-plugins
 
    <plugin
          id="jpiere.plugin.groupware"
          download-size="339"
          install-size="731"
+<<<<<<< HEAD
          version="8.2.0.202112171440"
+=======
+         version="8.2.0.202104271507"
+>>>>>>> branch 'master' of https://github.com/luisamesty/Community-plugins
          unpack="false"/>
 
 </feature>
