@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 #Mon Feb 08 14:13:07 CET 2021
+=======
+#Tue Apr 27 17:08:46 CEST 2021
+>>>>>>> refs/remotes/Community-plugins/master
 artifact.repository.factory.order=artifacts.xml.xz,artifacts.xml,\!
 version=1
 metadata.repository.factory.order=content.xml.xz,content.xml,\!
