@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <?artifactRepository version='1.1.0'?>
 <artifacts size='1'>
-  <artifact classifier='org.eclipse.update.feature' id='org.community.feature' version='8.2.0.202102081312'>
+  <artifact classifier='org.eclipse.update.feature' id='org.community.feature' version='8.2.0.202305271036'>
     <properties size='6'>
-      <property name='artifact.size' value='776'/>
-      <property name='download.size' value='776'/>
+      <property name='artifact.size' value='777'/>
+      <property name='download.size' value='777'/>
       <property name='maven-groupId' value='org.idempiere'/>
       <property name='maven-artifactId' value='org.community.feature'/>
       <property name='maven-version' value='8.2.0-SNAPSHOT'/>

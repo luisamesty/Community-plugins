@@ -1,10 +1,10 @@
 eclipse.preferences.version=1
-repositories/file\:_Users_luisamesty_.m2_repository/description=
-repositories/file\:_Users_luisamesty_.m2_repository/enabled=true
-repositories/file\:_Users_luisamesty_.m2_repository/isSystem=false
-repositories/file\:_Users_luisamesty_.m2_repository/provider=
-repositories/file\:_Users_luisamesty_.m2_repository/suffix=.meta/p2-artifacts.properties
-repositories/file\:_Users_luisamesty_.m2_repository/uri=file\:/Users/luisamesty/.m2/repository/
+repositories/file\:_Users_luisamesty_.m2_repository_82_OK/description=
+repositories/file\:_Users_luisamesty_.m2_repository_82_OK/enabled=true
+repositories/file\:_Users_luisamesty_.m2_repository_82_OK/isSystem=false
+repositories/file\:_Users_luisamesty_.m2_repository_82_OK/provider=
+repositories/file\:_Users_luisamesty_.m2_repository_82_OK/suffix=.meta/p2-artifacts.properties
+repositories/file\:_Users_luisamesty_.m2_repository_82_OK/uri=file\:/Users/luisamesty/.m2/repository_82_OK/
 repositories/file\:_Users_luisamesty_sources_Community-plugins_idempiere-special-editor-examples_target/description=
 repositories/file\:_Users_luisamesty_sources_Community-plugins_idempiere-special-editor-examples_target/enabled=true
 repositories/file\:_Users_luisamesty_sources_Community-plugins_idempiere-special-editor-examples_target/isSystem=false
@@ -63,7 +63,7 @@ repositories/file\:_Users_luisamesty_sources_Community-plugins_org.community.p2.
 repositories/file\:_Users_luisamesty_sources_Community-plugins_org.community.p2.site_target_repository/type=org.eclipse.equinox.p2.artifact.repository.simpleRepository
 repositories/file\:_Users_luisamesty_sources_Community-plugins_org.community.p2.site_target_repository/uri=file\:/Users/luisamesty/sources/Community-plugins/org.community.p2.site/target/repository/
 repositories/file\:_Users_luisamesty_sources_Community-plugins_org.community.p2.site_target_repository/version=1
-repositories/file\:_resolution-context-artifacts@%252FUsers%252Fluisamesty%252Fsources%252FCommunity-plugins%252Forg.community.p2.site/description=Read-only repository adapter for org.eclipse.tycho.p2.target.TargetPlatformBundlePublisher$PublishedBundlesArtifactRepository@793e33fc
+repositories/file\:_resolution-context-artifacts@%252FUsers%252Fluisamesty%252Fsources%252FCommunity-plugins%252Forg.community.p2.site/description=Read-only repository adapter for org.eclipse.tycho.p2.target.TargetPlatformBundlePublisher$PublishedBundlesArtifactRepository@6717cd0e
 repositories/file\:_resolution-context-artifacts@%252FUsers%252Fluisamesty%252Fsources%252FCommunity-plugins%252Forg.community.p2.site/enabled=true
 repositories/file\:_resolution-context-artifacts@%252FUsers%252Fluisamesty%252Fsources%252FCommunity-plugins%252Forg.community.p2.site/isSystem=false
 repositories/file\:_resolution-context-artifacts@%252FUsers%252Fluisamesty%252Fsources%252FCommunity-plugins%252Forg.community.p2.site/provider=
