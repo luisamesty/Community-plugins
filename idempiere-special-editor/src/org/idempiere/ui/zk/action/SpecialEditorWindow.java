@@ -82,7 +82,7 @@ public class SpecialEditorWindow extends Window implements EventListener<Event>,
 		for (GridField field : tab.getFields()) {
 // OJO TRAZA
 //System.out.println("Field: " + field.getColumnName() +" = "+field.getValue() +"  isDisplayed: " + field.isDisplayed(true) +
-//	" isAlwaysUpdateable = "+ field.isAlwaysUpdateable());
+//	" isAlwaysUpdateable = "+ field.isAlwaysUpdateable()+ " isReadOnly = "+field.isReadOnly());
 			if (   field.isDisplayed(true)
 				&& !field.isAlwaysUpdateable()
 				&& !field.isReadOnly()
@@ -91,7 +91,7 @@ public class SpecialEditorWindow extends Window implements EventListener<Event>,
 // OJO TRAZA
 //System.out.println("Field: " + field.getColumnName() +" (OK for edit) = "+field.getValue() + 
 //		"  isDisplayed = " + field.isDisplayed(true) +
-//		" isAlwaysUpdateable = "+ field.isAlwaysUpdateable());
+//		" isAlwaysUpdateable = "+ field.isAlwaysUpdateable()+ " isReadOnly = "+field.isReadOnly());
 //System.out.println("  ...OK for edit");
 					enabledFields.appendItem(field.getHeader(), field);
 				}
