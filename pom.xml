@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.idempiere</groupId>
   <artifactId>Community-plugins</artifactId>
-  <version>8.2.0-SNAPSHOT</version>
+  <version>10.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <modules>
   	<module>org.community.feature</module>
@@ -12,6 +12,5 @@
   	<module>org.community.p2.targetplatform</module>
   	<module>org.community.kanban-board</module>
   	<module>org.community.model-generator</module>
-  	<module>jpiere.plugin.groupware</module>
   </modules>
 </project>

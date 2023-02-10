@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Specialeditor_examples
 Bundle-SymbolicName: org.community.ui.zk.specialeditor_examples;singleton:=true
-Bundle-Version: 8.2.0.qualifier
+Bundle-Version: 10.0.0.qualifier
 Bundle-Activator: org.adempiere.plugin.utils.AdempiereActivator
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Import-Package: org.adempiere.base,
@@ -14,8 +14,8 @@ Import-Package: org.adempiere.base,
 Service-Component: OSGI-INF/*.xml
 Bundle-ActivationPolicy: lazy
 Export-Package: org.idempiere.extend
-Require-Bundle: org.adempiere.base;bundle-version="8.1.0",
- org.community.ui.zk.specialeditor;bundle-version="8.1.0",
+Require-Bundle: org.adempiere.base;bundle-version="10.0.0.0",
+ org.community.ui.zk.specialeditor;bundle-version="10.0.0.0",
  zcommon;bundle-version="0.0.0",
  zel;bundle-version="0.0.0",
  zhtml;bundle-version="0.0.0",

@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-#Fri Dec 17 15:41:36 CET 2021
-=======
-#Tue Apr 27 17:08:46 CEST 2021
->>>>>>> branch 'master' of https://github.com/luisamesty/Community-plugins
+#Thu Feb 09 10:43:28 CST 2023
 artifact.repository.factory.order=artifacts.xml.xz,artifacts.xml,\!
 version=1
 metadata.repository.factory.order=content.xml.xz,content.xml,\!

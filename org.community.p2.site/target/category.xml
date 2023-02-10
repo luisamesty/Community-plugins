@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
     <feature 
-    	url="features/org.community.feature_8.2.0.qualifier.jar" 
-    	id="org.community.feature" version="8.2.0.qualifier">
+    	url="features/org.community.feature_10.0.0.qualifier.jar" 
+    	id="org.community.feature" version="10.0.0.qualifier">
 	    <category name="org.community.idempiere"/>
     </feature>
 </site>
