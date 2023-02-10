@@ -5,7 +5,7 @@
   	<relativePath>../../idempiere/org.idempiere.parent/pom.xml</relativePath>
   	<groupId>org.idempiere</groupId>
   	<artifactId>org.idempiere.parent</artifactId>
-  	<version>8.2.0-SNAPSHOT</version>
+  	<version>10.0.0-SNAPSHOT</version>
   </parent>
   <packaging>eclipse-target-definition</packaging>
 </project>

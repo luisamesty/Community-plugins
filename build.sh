@@ -1,6 +1,6 @@
 #  COMMAND TO Build Maven Plugins
-mvn verify -Didempiere.target=org.community.p2.targetplatform -X
-
+# mvn verify -Didempiere.target=org.community.p2.targetplatform -X
+mvn verify
 # NOTE: Compilation is configured for local MAC OS development environment
 # Compiling in a different server setup you need to change relativePath and Location.
 #
