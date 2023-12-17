@@ -1,6 +1,7 @@
 #  COMMAND TO Build Maven Plugins
 # mvn verify -Didempiere.target=org.community.p2.targetplatform -X
-mvn verify
+mvn -Dmaven.repo.local=$HOME/.m2/repository_10_OK clean install
+
 # NOTE: Compilation is configured for local MAC OS development environment
 # Compiling in a different server setup you need to change relativePath and Location.
 #
