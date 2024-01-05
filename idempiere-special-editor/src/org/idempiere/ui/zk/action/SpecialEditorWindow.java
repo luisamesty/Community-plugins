@@ -14,6 +14,7 @@
 package org.idempiere.ui.zk.action;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.adempiere.base.Service;
@@ -76,22 +77,24 @@ public class SpecialEditorWindow extends Window implements EventListener<Event>,
 	public void init(ADWindowContent panel) {
 		enabledFields.setMold("select");
 		enabledFields.getItems().clear();
-
+		
 		GridTab tab = panel.getActiveGridTab();
 		PO po = tab.getTableModel().getPO(tab.getCurrentRow());
 		for (GridField field : tab.getFields()) {
 // OJO TRAZA
 //System.out.println("Field: " + field.getColumnName() +" = "+field.getValue() +"  isDisplayed: " + field.isDisplayed(true) +
 //	" isAlwaysUpdateable = "+ field.isAlwaysUpdateable()+ " isReadOnly = "+field.isReadOnly());
-			if (   field.isDisplayed(true)
+			// Standard Previous Condition
+			if (  ( field.isDisplayed(true)
 				&& !field.isAlwaysUpdateable()
 				&& !field.isReadOnly()
-				&& field.getDisplayType() != DisplayType.Button) {
+				&& field.getDisplayType() != DisplayType.Button) 
+					|| validateSpecialField(field)){
 				if (canEdit(tab, field, po)) {
 // OJO TRAZA
-//System.out.println("Field: " + field.getColumnName() +" (OK for edit) = "+field.getValue() + 
-//		"  isDisplayed = " + field.isDisplayed(true) +
-//		" isAlwaysUpdateable = "+ field.isAlwaysUpdateable()+ " isReadOnly = "+field.isReadOnly());
+System.out.println("Field: " + field.getColumnName() +" (OK for edit) = "+field.getValue() + 
+		"  isDisplayed = " + field.isDisplayed(true) +
+		" isAlwaysUpdateable = "+ field.isAlwaysUpdateable()+ " isReadOnly = "+field.isReadOnly());
 //System.out.println("  ...OK for edit");
 					enabledFields.appendItem(field.getHeader(), field);
 				}
@@ -294,4 +297,19 @@ public class SpecialEditorWindow extends Window implements EventListener<Event>,
 		this.retMessage = retMessage;
 	}
 
+	private boolean validateSpecialField(GridField field) {
+		
+		boolean retValue = false;
+		// Special Fields
+		List<String> specialFields = new ArrayList<>();
+		specialFields.add("C_ConversionType_ID");
+		specialFields.add("CurrencyRate");
+		for (String s : specialFields) {
+		    if (s.equals(field.getColumnName() )) {
+		    	retValue = true;
+		        break; // Break out of the loop to skip the remaining items
+		    }
+		}
+		return retValue;
+	}
 }
