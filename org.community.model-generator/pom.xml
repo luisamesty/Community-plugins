@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
     <artifactId>org.community.model-generator</artifactId>
-	<version>10.0.0-SNAPSHOT</version>
+	<version>11.0.0-SNAPSHOT</version>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <resources>
@@ -28,7 +28,7 @@
   </build>	
 	<parent>
 		<relativePath>../../idempiere/org.idempiere.parent/pom.xml</relativePath>
-		<version>10.0.0-SNAPSHOT</version>
+		<version>11.0.0-SNAPSHOT</version>
 		<artifactId>org.idempiere.parent</artifactId>
 		<groupId>org.idempiere</groupId>
 	</parent>
