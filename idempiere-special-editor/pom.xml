@@ -29,4 +29,5 @@
   	<relativePath>../../idempiere/org.idempiere.parent/pom.xml</relativePath>
   </parent>
   <packaging>eclipse-plugin</packaging>
-  </project>
+  <version>11.0.0-SNAPSHOT</version>
+</project>

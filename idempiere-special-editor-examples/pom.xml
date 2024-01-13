@@ -21,5 +21,11 @@
   	<groupId>org.idempiere</groupId>
   </parent>
   <packaging>eclipse-plugin</packaging>
-  <version>11.0.0-SNAPSHOT</version>
+  <dependencies>
+  	<dependency>
+  		<groupId>org.idempiere</groupId>
+  		<artifactId>org.community.ui.zk.specialeditor</artifactId>
+  		<version>11.0.0-SNAPSHOT</version>
+  	</dependency>
+  </dependencies>
 </project>
