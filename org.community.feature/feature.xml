@@ -18,28 +18,22 @@
 
    <plugin
          id="org.community.ui.zk.specialeditor"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+         version="0.0.0"/>
 
    <plugin
          id="org.community.ui.zk.specialeditor_examples"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+         version="0.0.0"/>
 
    <plugin
          id="org.community.kanban-board"
-         download-size="0"
-         install-size="0"
          version="0.0.0"/>
 
    <plugin
          id="org.community.model-generator"
-         download-size="0"
-         install-size="0"
+         version="0.0.0"/>
+
+   <plugin
+         id="au.blindmot.mailbtn"
          version="0.0.0"/>
 
 </feature>
