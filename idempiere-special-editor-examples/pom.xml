@@ -20,14 +20,5 @@
   	<relativePath>../../idempiere/org.idempiere.parent/pom.xml</relativePath>
   	<groupId>org.idempiere</groupId>
   </parent>
-  <packaging>eclipse-plugin</packaging>
-  <dependencies>
-	<dependency>
-		<groupId>org.idempiere</groupId>
-		<artifactId>org.community.ui.zk.specialeditor</artifactId>
-		<version>11.0.0-SNAPSHOT</version>
-		<scope>system</scope>
-		<systemPath>${user.home}/.m2/repository_11_OK/org/idempiere/org.community.ui.zk.specialeditor/11.0.0-SNAPSHOT/org.community.ui.zk.specialeditor-11.0.0-SNAPSHOT.jar</systemPath>
-	</dependency>
-  </dependencies>    
+  <packaging>eclipse-plugin</packaging>    
 </project>

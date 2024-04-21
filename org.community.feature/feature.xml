@@ -32,8 +32,4 @@
          id="org.community.model-generator"
          version="0.0.0"/>
 
-   <plugin
-         id="au.blindmot.mailbtn"
-         version="0.0.0"/>
-
 </feature>
