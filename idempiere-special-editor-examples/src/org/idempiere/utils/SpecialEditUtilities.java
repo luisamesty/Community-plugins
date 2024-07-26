@@ -93,7 +93,7 @@ public class SpecialEditUtilities {
 	{
 		String sql;
 		int no=0;
-		if (! MSysConfig.getBooleanValue("LCO_USE_WITHHOLDINGS", true, Env.getAD_Client_ID(Env.getCtx())))
+		if (! MSysConfig.getBooleanValue("LCO_USE_WITHHOLDINGS", false, Env.getAD_Client_ID(Env.getCtx())))
 			return no;
 		// SET  LCO_InvoiceWithholding
 		sql = "UPDATE LCO_InvoiceWithholding SET DateAcct = '"+p_DateAcct+"' WHERE  C_Invoice_ID="+p_C_Invoice_ID;	
@@ -119,7 +119,7 @@ public class SpecialEditUtilities {
 	{
 		String sql;
 		int no=0;
-		if (! MSysConfig.getBooleanValue("LCO_USE_WITHHOLDINGS", true, Env.getAD_Client_ID(Env.getCtx())))
+		if (! MSysConfig.getBooleanValue("LCO_USE_WITHHOLDINGS", false, Env.getAD_Client_ID(Env.getCtx())))
 			return no;
 		// SET  LCO_InvoiceWithholding
 		sql = "UPDATE LCO_InvoiceWithholding SET DateTrx = '"+p_DateTrx+"' WHERE  C_Invoice_ID="+p_C_Invoice_ID;	
