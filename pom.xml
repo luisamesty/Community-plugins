@@ -7,7 +7,7 @@
   <modules>
   	<module>org.community.feature</module>
   	<module>idempiere-special-editor</module>
-  	<module>idempiere-special-editor-examples</module>
+  	
   	<module>org.community.p2.site</module>
   	<module>org.community.p2.targetplatform</module>
   	<module>org.community.kanban-board</module>

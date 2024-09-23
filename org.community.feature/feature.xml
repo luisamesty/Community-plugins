@@ -21,10 +21,6 @@
          version="0.0.0"/>
 
    <plugin
-         id="org.community.ui.zk.specialeditor_examples"
-         version="0.0.0"/>
-
-   <plugin
          id="org.community.kanban-board"
          version="0.0.0"/>
 
