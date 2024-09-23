@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="org.idempiere.extend.specialeditorm_movementactivity">
-   <implementation class="org.idempiere.extend.SpecialEditM_MovementC_Activity_ID"/>
-   <service>
-      <provide interface="org.idempiere.base.ISpecialEditCallout"/>t"/>
-   </service>
-   <property name="tableName" type="String" value="M_Movement"/>
-   <property name="columnName" type="String" value="C_Activity_ID"/>
-</scr:component>

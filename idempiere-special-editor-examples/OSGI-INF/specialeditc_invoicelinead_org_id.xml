@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="org.idempiere.extend.specialeditorc_invoicelinead_org_id">
-   <implementation class="org.idempiere.extend.SpecialEditC_InvoiceLineAD_Org_ID"/>
-   <service>
-      <provide interface="org.idempiere.base.ISpecialEditCallout"/>t"/>
-   </service>
-   <property name="tableName" type="String" value="C_InvoiceLine"/>
-   <property name="columnName" type="String" value="AD_Org_ID"/>
-</scr:component>

@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="org.idempiere.extend.specialeditorc_invoicelinec_charge_id">
-   <implementation class="org.idempiere.extend.SpecialEditC_InvoiceLineC_Charge_ID"/>
-   <service>
-      <provide interface="org.idempiere.base.ISpecialEditCallout"/>t"/>
-   </service>
-   <property name="tableName" type="String" value="C_InvoiceLine"/>
-   <property name="columnName" type="String" value="C_Charge_ID"/>
-</scr:component>
