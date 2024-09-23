@@ -2,7 +2,7 @@
 <feature
       id="org.community.feature"
       label="Feature"
-      version="8.2.0.qualifier">
+      version="11.0.0.qualifier">
 
    <description url="http://www.example.com/description">
       [Enter Feature Description here.]
@@ -18,28 +18,14 @@
 
    <plugin
          id="org.community.ui.zk.specialeditor"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.community.ui.zk.specialeditor_examples"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+         version="0.0.0"/>
 
    <plugin
          id="org.community.kanban-board"
-         download-size="0"
-         install-size="0"
          version="0.0.0"/>
 
    <plugin
          id="org.community.model-generator"
-         download-size="0"
-         install-size="0"
          version="0.0.0"/>
 
 </feature>

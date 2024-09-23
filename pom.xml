@@ -2,15 +2,18 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.idempiere</groupId>
   <artifactId>Community-plugins</artifactId>
-  <version>8.2.0-SNAPSHOT</version>
+  <version>11.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <modules>
   	<module>org.community.feature</module>
   	<module>idempiere-special-editor</module>
-  	<module>idempiere-special-editor-examples</module>
+  	
   	<module>org.community.p2.site</module>
   	<module>org.community.p2.targetplatform</module>
   	<module>org.community.kanban-board</module>
   	<module>org.community.model-generator</module>
   </modules>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
 </project>
