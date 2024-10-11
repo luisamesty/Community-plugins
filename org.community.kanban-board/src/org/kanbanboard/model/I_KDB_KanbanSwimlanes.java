@@ -21,25 +21,25 @@ import java.sql.Timestamp;
 import org.compiere.model.*;
 import org.compiere.util.KeyNamePair;
 
-/** Generated Interface for KDB_Parameter
+/** Generated Interface for KDB_KanbanSwimlanes
  *  @author iDempiere (generated) 
- *  @version Release 10
+ *  @version Release 8.2
  */
 @SuppressWarnings("all")
-public interface I_KDB_Parameter 
+public interface I_KDB_KanbanSwimlanes 
 {
 
-    /** TableName=KDB_Parameter */
-    public static final String Table_Name = "KDB_Parameter";
+    /** TableName=KDB_KanbanSwimlanes */
+    public static final String Table_Name = "KDB_KanbanSwimlanes";
 
-    /** AD_Table_ID=1000022 */
+    /** AD_Table_ID=1000009 */
     public static final int Table_ID = MTable.getTable_ID(Table_Name);
 
     KeyNamePair Model = new KeyNamePair(Table_ID, Table_Name);
 
-    /** AccessLevel = 6 - System - Client 
+    /** AccessLevel = 3 - Client - Org 
      */
-    BigDecimal accessLevel = BigDecimal.valueOf(6);
+    BigDecimal accessLevel = BigDecimal.valueOf(3);
 
     /** Load Meta Data */
 
@@ -80,36 +80,6 @@ public interface I_KDB_Parameter
 	  */
 	public int getCreatedBy();
 
-    /** Column name DefaultValue */
-    public static final String COLUMNNAME_DefaultValue = "DefaultValue";
-
-	/** Set Default Logic.
-	  * Default value hierarchy, separated by ;
-
-	  */
-	public void setDefaultValue (String DefaultValue);
-
-	/** Get Default Logic.
-	  * Default value hierarchy, separated by ;
-
-	  */
-	public String getDefaultValue();
-
-    /** Column name DefaultValue2 */
-    public static final String COLUMNNAME_DefaultValue2 = "DefaultValue2";
-
-	/** Set Default Logic 2.
-	  * Default value hierarchy, separated by ;
-
-	  */
-	public void setDefaultValue2 (String DefaultValue2);
-
-	/** Get Default Logic 2.
-	  * Default value hierarchy, separated by ;
-
-	  */
-	public String getDefaultValue2();
-
     /** Column name Description */
     public static final String COLUMNNAME_Description = "Description";
 
@@ -122,6 +92,19 @@ public interface I_KDB_Parameter
 	  * Optional short description of the record
 	  */
 	public String getDescription();
+
+    /** Column name InlineStyle */
+    public static final String COLUMNNAME_InlineStyle = "InlineStyle";
+
+	/** Set Inline Style.
+	  * CSS Inline Style
+	  */
+	public void setInlineStyle (String InlineStyle);
+
+	/** Get Inline Style.
+	  * CSS Inline Style
+	  */
+	public String getInlineStyle();
 
     /** Column name IsActive */
     public static final String COLUMNNAME_IsActive = "IsActive";
@@ -136,38 +119,29 @@ public interface I_KDB_Parameter
 	  */
 	public boolean isActive();
 
-    /** Column name IsRange */
-    public static final String COLUMNNAME_IsRange = "IsRange";
+    /** Column name IsDefault */
+    public static final String COLUMNNAME_IsDefault = "IsDefault";
 
-	/** Set Range.
-	  * The parameter is a range of values
+	/** Set Default.
+	  * Default value
 	  */
-	public void setIsRange (boolean IsRange);
+	public void setIsDefault (boolean IsDefault);
 
-	/** Get Range.
-	  * The parameter is a range of values
+	/** Get Default.
+	  * Default value
 	  */
-	public boolean isRange();
+	public boolean isDefault();
 
-    /** Column name KDB_ColumnTable_ID */
-    public static final String COLUMNNAME_KDB_ColumnTable_ID = "KDB_ColumnTable_ID";
+    /** Column name KDB_Column_ID */
+    public static final String COLUMNNAME_KDB_Column_ID = "KDB_Column_ID";
 
-	/** Set Column Table	  */
-	public void setKDB_ColumnTable_ID (int KDB_ColumnTable_ID);
+	/** Set Swimlane Column	  */
+	public void setKDB_Column_ID (int KDB_Column_ID);
 
-	/** Get Column Table	  */
-	public int getKDB_ColumnTable_ID();
+	/** Get Swimlane Column	  */
+	public int getKDB_Column_ID();
 
-	public org.compiere.model.I_AD_Column getKDB_ColumnTable() throws RuntimeException;
-
-    /** Column name KDB_IsShowParameterName */
-    public static final String COLUMNNAME_KDB_IsShowParameterName = "KDB_IsShowParameterName";
-
-	/** Set Show Parameter Name	  */
-	public void setKDB_IsShowParameterName (boolean KDB_IsShowParameterName);
-
-	/** Get Show Parameter Name	  */
-	public boolean isKDB_IsShowParameterName();
+	public org.compiere.model.I_AD_Column getKDB_Column() throws RuntimeException;
 
     /** Column name KDB_KanbanBoard_ID */
     public static final String COLUMNNAME_KDB_KanbanBoard_ID = "KDB_KanbanBoard_ID";
@@ -180,23 +154,49 @@ public interface I_KDB_Parameter
 
 	public org.kanbanboard.model.I_KDB_KanbanBoard getKDB_KanbanBoard() throws RuntimeException;
 
-    /** Column name KDB_Parameter_ID */
-    public static final String COLUMNNAME_KDB_Parameter_ID = "KDB_Parameter_ID";
+    /** Column name KDB_KanbanSwimlanes_ID */
+    public static final String COLUMNNAME_KDB_KanbanSwimlanes_ID = "KDB_KanbanSwimlanes_ID";
 
-	/** Set Kanban Parameter	  */
-	public void setKDB_Parameter_ID (int KDB_Parameter_ID);
+	/** Set Kanban Swimlanes	  */
+	public void setKDB_KanbanSwimlanes_ID (int KDB_KanbanSwimlanes_ID);
 
-	/** Get Kanban Parameter	  */
-	public int getKDB_Parameter_ID();
+	/** Get Kanban Swimlanes	  */
+	public int getKDB_KanbanSwimlanes_ID();
 
-    /** Column name KDB_Parameter_UU */
-    public static final String COLUMNNAME_KDB_Parameter_UU = "KDB_Parameter_UU";
+    /** Column name KDB_KanbanSwimlanes_UU */
+    public static final String COLUMNNAME_KDB_KanbanSwimlanes_UU = "KDB_KanbanSwimlanes_UU";
 
-	/** Set KDB_Parameter_UU	  */
-	public void setKDB_Parameter_UU (String KDB_Parameter_UU);
+	/** Set KDB_KanbanSwimlanes_UU	  */
+	public void setKDB_KanbanSwimlanes_UU (String KDB_KanbanSwimlanes_UU);
 
-	/** Get KDB_Parameter_UU	  */
-	public String getKDB_Parameter_UU();
+	/** Get KDB_KanbanSwimlanes_UU	  */
+	public String getKDB_KanbanSwimlanes_UU();
+
+    /** Column name KDB_SummaryMsg */
+    public static final String COLUMNNAME_KDB_SummaryMsg = "KDB_SummaryMsg";
+
+	/** Set Summary Message.
+	  * Message that will be present on every state of the Kanban Board
+	  */
+	public void setKDB_SummaryMsg (String KDB_SummaryMsg);
+
+	/** Get Summary Message.
+	  * Message that will be present on every state of the Kanban Board
+	  */
+	public String getKDB_SummaryMsg();
+
+    /** Column name KDB_SummarySQL */
+    public static final String COLUMNNAME_KDB_SummarySQL = "KDB_SummarySQL";
+
+	/** Set Summary SQL.
+	  * Defines the SQL code that sets the summary that is set on every state of the Kanban Board
+	  */
+	public void setKDB_SummarySQL (String KDB_SummarySQL);
+
+	/** Get Summary SQL.
+	  * Defines the SQL code that sets the summary that is set on every state of the Kanban Board
+	  */
+	public String getKDB_SummarySQL();
 
     /** Column name Name */
     public static final String COLUMNNAME_Name = "Name";
@@ -211,33 +211,18 @@ public interface I_KDB_Parameter
 	  */
 	public String getName();
 
-    /** Column name QueryOperator */
-    public static final String COLUMNNAME_QueryOperator = "QueryOperator";
+    /** Column name OrderByClause */
+    public static final String COLUMNNAME_OrderByClause = "OrderByClause";
 
-	/** Set Query Operator.
-	  * Operator for database query
+	/** Set Sql ORDER BY.
+	  * Fully qualified ORDER BY clause
 	  */
-	public void setQueryOperator (String QueryOperator);
+	public void setOrderByClause (String OrderByClause);
 
-	/** Get Query Operator.
-	  * Operator for database query
+	/** Get Sql ORDER BY.
+	  * Fully qualified ORDER BY clause
 	  */
-	public String getQueryOperator();
-
-    /** Column name SeqNo */
-    public static final String COLUMNNAME_SeqNo = "SeqNo";
-
-	/** Set Sequence.
-	  * Method of ordering records;
- lowest number comes first
-	  */
-	public void setSeqNo (int SeqNo);
-
-	/** Get Sequence.
-	  * Method of ordering records;
- lowest number comes first
-	  */
-	public int getSeqNo();
+	public String getOrderByClause();
 
     /** Column name Updated */
     public static final String COLUMNNAME_Updated = "Updated";
@@ -254,4 +239,17 @@ public interface I_KDB_Parameter
 	  * User who updated this records
 	  */
 	public int getUpdatedBy();
+
+    /** Column name WhereClause */
+    public static final String COLUMNNAME_WhereClause = "WhereClause";
+
+	/** Set Sql WHERE.
+	  * Fully qualified SQL WHERE clause
+	  */
+	public void setWhereClause (String WhereClause);
+
+	/** Get Sql WHERE.
+	  * Fully qualified SQL WHERE clause
+	  */
+	public String getWhereClause();
 }
