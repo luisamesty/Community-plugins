@@ -5,7 +5,8 @@ Bundle-SymbolicName: org.community.ui.zk.specialeditor;singleton:=true
 Bundle-Version: 11.0.0.qualifier
 Bundle-Activator: org.adempiere.plugin.utils.AdempiereActivator
 Export-Package: action.images,
- org.idempiere.base
+ org.idempiere.base,
+ org.idempiere.ui.zk.action
 Bundle-RequiredExecutionEnvironment: JavaSE-17
 Import-Package: org.adempiere.base,
  org.adempiere.exceptions,
