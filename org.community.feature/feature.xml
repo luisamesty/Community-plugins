@@ -2,7 +2,7 @@
 <feature
       id="org.community.feature"
       label="Feature"
-      version="11.0.0.qualifier">
+      version="12.0.0.qualifier">
 
    <description url="http://www.example.com/description">
       [Enter Feature Description here.]
@@ -18,14 +18,14 @@
 
    <plugin
          id="org.community.ui.zk.specialeditor"
-         version="0.0.0"/>
+         version="12.0.0.qualifier"/>
 
    <plugin
          id="org.community.kanban-board"
-         version="0.0.0"/>
+         version="12.0.0.qualifier"/>
 
    <plugin
          id="org.community.model-generator"
-         version="0.0.0"/>
+         version="12.0.0.qualifier"/>
 
 </feature>
