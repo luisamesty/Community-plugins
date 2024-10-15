@@ -28,48 +28,51 @@ package org.kanbanboard.apps.form;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 
-import org.compiere.model.GridField;
-import org.compiere.model.GridFieldVO;
+import org.adempiere.exceptions.AdempiereException;
+import org.compiere.model.MRole;
 import org.compiere.model.MTable;
 import org.compiere.model.PO;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
 import org.compiere.util.KeyNamePair;
+import org.compiere.util.Msg;
 import org.compiere.util.Util;
+import org.kanbanboard.model.KanbanSwimlane;
 import org.kanbanboard.model.MKanbanBoard;
 import org.kanbanboard.model.MKanbanCard;
 import org.kanbanboard.model.MKanbanParameter;
-import org.kanbanboard.model.MKanbanProcess;
 import org.kanbanboard.model.MKanbanStatus;
+import org.kanbanboard.model.MKanbanSwimlaneConfiguration;
 
 public class KanbanBoard {
 
 	public static CLogger log = CLogger.getCLogger(KanbanBoard.class);
 	
-	protected final static String PROCESS_TYPE = "processType"; 
-	protected final static String CARD_PROCESS = "cardProcess";
-	protected final static String STATUS_PROCESS = "statusProcess";
-	protected final static String BOARD_PROCESS = "boardProcess";
+	protected final static String PROCESS_TYPE = KanbanBoardProcessController.PROCESS_TYPE; 
+	protected final static String CARD_PROCESS = KanbanBoardProcessController.CARD_PROCESS;
+	protected final static String STATUS_PROCESS = KanbanBoardProcessController.STATUS_PROCESS;
+	protected final static String BOARD_PROCESS = KanbanBoardProcessController.BOARD_PROCESS;
+	
+	private final static String DEFAULT_SWIMLANE_CSS = "border: 1px solid;";
 
 	private MKanbanBoard        kanbanBoard = null;
 	private List<MKanbanStatus> statuses    = null;
 	private MKanbanStatus       activeStatus;
 	private String              isReadWrite = null;
+	private boolean             canRoleUpdate = false;
+	private boolean             roleAccessChecked = false;
 	private String              summarySql = null;		
 	
-	//Associated processes
-	private List<MKanbanProcess> processes  = null;
-	private List<MKanbanProcess> statusProcesses  = null;
-	private List<MKanbanProcess> boardProcesses  = null;
-	private List<MKanbanProcess> cardProcesses  = null;
+	private KanbanBoardProcessController processController;
+	private KanbanBoardPriorityController priorityController;
 	
 	//Parameters
 	private List<MKanbanParameter> boardParameters  = null;
@@ -116,8 +119,16 @@ public class KanbanBoard {
 		}
 		return list;
 	}
+	
+	public boolean isReadOnly() {
+		if (!roleAccessChecked) {
+			canRoleUpdate = MRole.getDefault(Env.getCtx(), false).isColumnAccess(getAd_Table_id(), kanbanBoard.getStatusColumn().getAD_Column_ID(), false);
+			roleAccessChecked = true;
+		}
+		return !(canRoleUpdate && isReadWrite());
+	}
 
-	public boolean isReadWrite() {
+	private boolean isReadWrite() {
 		if (isReadWrite == null) {
 			String sql = "SELECT isreadwrite FROM KDB_KanbanControlAccess " +
 					"WHERE KDB_KanbanBoard_ID = ? AND IsActive = 'Y' AND (AD_Role_ID = ? "
@@ -172,17 +183,19 @@ public class KanbanBoard {
 
 	public void setKanbanBoard(int kanbanBoardId) {
 		//Check if it's it's a new kanban board or the one already selected
-		if (kanbanBoardId==-1)
-			kanbanBoard=null;
-		else if (kanbanBoard == null || kanbanBoardId != kanbanBoard.get_ID()) {
+		if (kanbanBoardId == -1) {
+			kanbanBoard = null;
+			processController = null;
+			priorityController = null;
+		} else if (kanbanBoard == null || kanbanBoardId != kanbanBoard.get_ID()) {
 			kanbanBoard = new MKanbanBoard(Env.getCtx(), kanbanBoardId, null);
+			processController = new KanbanBoardProcessController(kanbanBoard);
+			priorityController = new KanbanBoardPriorityController(kanbanBoard);
+
 			statuses = null;
-			processes = null;
-			statusProcesses = null;
 			boardParameters = null;
-			cardProcesses= null;
-			boardProcesses = null;
 			isReadWrite = null;
+			roleAccessChecked = false;
 			kanbanBoard.setBoardContent();
 			getBoardParameters();
 			kanbanBoard.getKanbanCards();
@@ -208,41 +221,28 @@ public class KanbanBoard {
 		return statuses;
 	}
 	
+	public List<MKanbanSwimlaneConfiguration> getSwimlaneConfigurationRecords() {
+		return kanbanBoard.getSwimlaneConfigurationRecords();
+	}
+	
+	protected boolean currentboardUsesSwimlane() {
+		return kanbanBoard.usesSwimlane();
+	}
+	
+	protected boolean paintSwimlanes() {
+		return currentboardUsesSwimlane() && getActiveSwimlane() != null && !getSwimlanes().isEmpty();
+	}
+	
 	public List<MKanbanParameter> getBoardParameters() {
 		if (boardParameters == null) {
 			boardParameters = kanbanBoard.getParameters();
 			
 			for (MKanbanParameter param : boardParameters)
-				getGridField(param);
+				param.setGridField(windowNo);
 		}
 		return boardParameters;
 	}
 	
-	public List<MKanbanProcess> getProcesses() {
-		if (processes == null) {
-			processes = kanbanBoard.getAssociatedProcesses();
-		}
-		return processes;
-	}
-
-	public List<MKanbanProcess> getStatusProcesses() {
-		if (statusProcesses == null)
-			statusProcesses = new ArrayList<MKanbanProcess>();
-		return statusProcesses;
-	}
-
-	public List<MKanbanProcess> getBoardProcesses() {
-		if (boardProcesses == null)
-			boardProcesses = new ArrayList<MKanbanProcess>();
-		return boardProcesses;
-	}
-
-	public List<MKanbanProcess> getCardProcesses() {
-		if (cardProcesses == null)
-			cardProcesses = new ArrayList<MKanbanProcess>();
-		return cardProcesses;
-	}
-
 	public void resetStatusProperties() {
 		kanbanBoard.resetStatusProperties();
 	}
@@ -259,13 +259,21 @@ public class KanbanBoard {
 
 	public boolean swapCard(MKanbanStatus startStatus, MKanbanStatus endStatus, MKanbanCard card) {
 
-		boolean statusChanged = card.changeStatus(kanbanBoard.getStatusColumn().getColumnName(), endStatus.getStatusValue());
+		boolean statusChanged = card.changeStatus(kanbanBoard.getStatusColumnName(), endStatus.getStatusValue());
 		if (statusChanged) {
 			startStatus.removeRecord(card);
 			endStatus.addRecord(card);
 			card.setBelongingStatus(endStatus);
 		}
 		return statusChanged;
+	}
+	
+	protected boolean swapSwimlanes(MKanbanCard card, String newSwimlaneValue) {
+		boolean success = card.changeStatus(getActiveSwimlane().getColumnName(), newSwimlaneValue);
+		if (success) {
+			card.setSwimlaneValue(newSwimlaneValue);
+		}
+		return success;
 	}
 
 	public int getAd_Table_id() {
@@ -279,13 +287,6 @@ public class KanbanBoard {
 			return statuses.size();
 	}
 	
-	public int getNumberOfProcesses() {
-		if (processes==null)
-			return kanbanBoard.getNumberOfProcesses();
-		else
-			return processes.size();
-	}
-
 	public void setPrintableNames() {
 		kanbanBoard.setPrintableNames();
 	}
@@ -311,70 +312,116 @@ public class KanbanBoard {
 		return summarySql;		
 	}		
 
-	public Collection<KeyNamePair> getSaveKeys (String processType, int referenceID) {
-		// clear result from prev time
-    	Collection<KeyNamePair> saveKeys = new ArrayList <KeyNamePair>();
-    	
-    	if (processType.equals(CARD_PROCESS)) {
-    		// Record-ID - Kanban Board -ID
-    		saveKeys.add(new KeyNamePair(referenceID, Integer.toString(kanbanBoard.getKDB_KanbanBoard_ID())));
-    	} else if(processType.equals(STATUS_PROCESS)) {
-    		// - Status ID -- (Table Reference ID)
-    		String statusValue = null;
-    		if (kanbanBoard.getStatus(referenceID) != null)
-    			statusValue = kanbanBoard.getStatus(referenceID).getStatusValue();
-    		
-    		saveKeys.add(new KeyNamePair(referenceID, statusValue));
-    	} else if (processType.equals(BOARD_PROCESS)) {
-    		//Kanban Board ID - Table ID
-    		saveKeys.add (new KeyNamePair(kanbanBoard.getKDB_KanbanBoard_ID(), Integer.toString(getAd_Table_id())));
-    	} else
-    		return null;
-    	
-    	return saveKeys;
-	}
-	
 	public boolean isHTML() {
 		return kanbanBoard.get_ValueAsBoolean("IsHtml");
 	}
 	
-	protected GridField getGridField(MKanbanParameter parameter) {
+	protected void selectSwimlane(Object value) {
+		kanbanBoard.setActiveSwimlaneRecord(value);
+	}
+	
+	protected MKanbanSwimlaneConfiguration getActiveSwimlane() {
+		return kanbanBoard.getActiveSwimlaneRecord();
+	}
+	
+	protected List<KanbanSwimlane> getSwimlanes() {
+		return kanbanBoard.getSwimlanes();
+	}
+	
+	protected String getSwimlaneCSS() {
+		String cssStyle = getActiveSwimlane().getInlineStyle() != null ? getActiveSwimlane().getInlineStyle() : DEFAULT_SWIMLANE_CSS;
+		return cssStyle + "cursor: pointer;";
+	}
+	
+	protected String getCardColorCSS(String color) {
+		return "background: linear-gradient(to left, transparent 5%, transparent 93%, " + color + " 1%);";
+	}
+	
+	protected String getCellCSSStyle(MKanbanCard card) {
+		String colorCSS = card.getCardColor() != null ? getCardColorCSS(card.getCardColor()) : "";
+		return "text-align: left;" + "border-style: outset; " + colorCSS;
+	}
+	
+	protected boolean kanbanHasProcesses() {
+		return processController.kanbanHasProcesses();
+	}
+	
+	protected void resetAndPopulateArrays() {
+		processController.resetAndPopulateArrays();
+	}
+	
+	protected boolean kanbanHasStatusProcess() {
+		return processController.kanbanHasStatusProcess();
+	}
+	
+	protected boolean kanbanHasCardProcess() {
+		return processController.kanbanHasCardProcess();
+	}
+	
+	protected boolean kanbanHasBoardProcess() {
+		return processController.kanbanHasBoardProcess();
+	}
+	
+	protected List<ProcessUIElement> getStatusProcessElements() {
+		return processController.getStatusProcessElements();
+	}
+	
+	protected List<ProcessUIElement> getCardProcessElements() {
+		return processController.getCardProcessElements();
+	}
+	
+	protected List<ProcessUIElement> getBoardProcessElements() {
+		return processController.getBoardProcessElements();
+	}
+	
+	protected Collection<KeyNamePair> getSaveKeys (String processType, int referenceID) {
+		return processController.getSaveKeys(processType, referenceID);
+	}
+	
+	protected String completeAllCardsInStatus(int referenceID) {
+		MKanbanStatus startStatus = kanbanBoard.getStatus(referenceID);
+		if (startStatus != null) {
+			MKanbanStatus endStatus = getCompleteDocActionStatus();
+			Iterator<MKanbanCard> it = startStatus.getRecords().iterator();
 
-		if (parameter.getGridField() == null) {
-			
-			String sql;
-			if (!Env.isBaseLanguage(Env.getCtx(), kanbanBoard.getTable().getTableName())){
-				sql = "SELECT * FROM AD_Field_vt WHERE AD_Column_ID=? AND AD_Table_ID=?"
-						+ " AND AD_Language='" + Env.getAD_Language(Env.getCtx()) + "'";
-			}
-			else{
-				sql = "SELECT * FROM AD_Field_v WHERE AD_Column_ID=? AND AD_Table_ID=?";
-			}
-
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
-			try {
-				pstmt = DB.prepareStatement(sql, null);
-				pstmt.setInt(1, parameter.getKDB_ColumnTable_ID());
-				pstmt.setInt(2, kanbanBoard.getAD_Table_ID());
-				rs = pstmt.executeQuery();
-				if (rs.next()) {
-					GridFieldVO voF = GridFieldVO.create(Env.getCtx(), 
-							windowNo, 0, 
-							rs.getInt("ad_window_id"), rs.getInt("ad_tab_id"), 
-							false, rs);
-					GridField gridField = new GridField(voF);
-					parameter.setGridField(gridField);
-				}
-			} catch (Exception e) {
-				CLogger.get().log(Level.SEVERE, "", e);
-			} finally {
-				DB.close(rs, pstmt);
-				rs = null;
-				pstmt = null;
+			while (it.hasNext()) {
+				MKanbanCard card = it.next();
+				boolean cardCompleted = completeNextCard(card, endStatus);
+				if (cardCompleted) 
+					it.remove();
+				else 
+					return Msg.parseTranslation(Env.getCtx(), card.getStatusChangeMessage()) + System.lineSeparator() +  card.getKanbanCardText();
 			}
 		}
-		
-		return parameter.getGridField();
+		return "OK";
+	}
+	
+	private MKanbanStatus getCompleteDocActionStatus() {
+		MKanbanStatus endStatus = kanbanBoard.getStatus("CO");
+		if (endStatus == null)
+			throw new AdempiereException(Msg.getMsg(Env.getLanguage(Env.getCtx()),"KDB_MissingComplete"));
+
+		return endStatus;
+	}
+	
+	private boolean completeNextCard(MKanbanCard card, MKanbanStatus completeStatus) {
+		boolean cardCompleted = card.changeStatus(kanbanBoard.getStatusColumnName(), completeStatus.getStatusValue());
+		if (cardCompleted) {
+			completeStatus.addRecord(card);
+			card.setBelongingStatus(completeStatus);
+		}
+		return cardCompleted;
+	}
+	
+	protected boolean isPriorityColumn() {
+		return kanbanBoard.isPriorityColumn();
+	}
+	
+	protected boolean isMoveCardProcess(int AD_Process_ID) {
+		return priorityController.isMoveCardProcess(AD_Process_ID);
+	}
+	
+	protected void moveCard(int AD_Process_ID, int referenceID) {
+		priorityController.moveCard(AD_Process_ID, referenceID);
 	}
 }
