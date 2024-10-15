@@ -30,9 +30,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Base64;
+import java.util.List;
 
 import org.compiere.model.MColumn;
+import org.compiere.model.MRefList;
 import org.compiere.model.MTable;
 import org.compiere.model.PO;
 import org.compiere.print.MPrintColor;
@@ -42,21 +45,18 @@ import org.compiere.util.DB;
 import org.compiere.util.DisplayType;
 import org.compiere.util.Env;
 import org.compiere.util.Msg;
-import org.compiere.util.Trx;
 import org.compiere.util.Util;
-
-
 
 public class MKanbanCard {
 
 	/**	Logger							*/
 	protected transient CLogger	log = CLogger.getCLogger (getClass());
 
-	public static String KDB_ErrorMessage = "KDB_InvalidTransition";
-
 	private int 		  recordId;
 	private MKanbanBoard  kanbanBoard;
 	private MKanbanStatus belongingStatus;
+	private String        swimlaneValue;
+	private String 	      priorityColumnName;
 	private BigDecimal 	  priorityValue;
 
 	private PO			  m_po           = null;
@@ -65,6 +65,7 @@ public class MKanbanCard {
 	
 	private String        textColor      = null;
 	private String        cardColor      = null;
+	private String        statusChangeMessage = null;
 
 	public BigDecimal getPriorityValue() {
 		return priorityValue;
@@ -102,6 +103,9 @@ public class MKanbanCard {
 		this.recordId = name;
 	}
 
+	public String getStatusChangeMessage() {
+		return statusChangeMessage;
+	}
 
 	public boolean isQueued() {
 		return isQueued;
@@ -119,6 +123,7 @@ public class MKanbanCard {
 		recordId = cardRecord;
 		belongingStatus=status;
 		kanbanBoard=belongingStatus.getKanbanBoard();
+		priorityColumnName = kanbanBoard.getKDB_PrioritySQL();
 		m_po = kanbanBoard.getTable().getPO(recordId, null);
 	}
 
@@ -128,36 +133,10 @@ public class MKanbanCard {
 			return false;
 		boolean success=true;
 
-		if (statusColumn.equals(MKanbanBoard.STATUSCOLUMN_DocStatus)) {
-			if (m_po instanceof DocAction && m_po.get_ColumnIndex("DocAction") >= 0) {
-				Trx trx = Trx.get(Trx.createTrxName("DCK"), true);
-				try {
-					String p_docAction = kanbanBoard.getDocAction(newStatusValue);
-					//No valid action
-					if (p_docAction == null)
-						throw new IllegalStateException();
-
-					m_po.set_ValueOfColumn("DocAction", p_docAction);
-					m_po.set_TrxName(trx.getTrxName());
-					if (!((DocAction) m_po).processIt(p_docAction)) {
-						throw new IllegalStateException();
-					} else
-						m_po.saveEx();
-
-					trx.commit();
-				} catch (IllegalStateException e) {
-					KDB_ErrorMessage = "KDB_InvalidTransition";
-					trx.rollback();
-					return false;
-				} catch (Exception e) {
-					e.printStackTrace();
-					KDB_ErrorMessage = e.getLocalizedMessage();
-					trx.rollback();
-					return false;
-				} finally {
-					trx.close();
-				}
-			}			
+		if (kanbanBoard.isDocActionKanbanBoard()) {
+			DocumentStatusController statusController = new DocumentStatusController(m_po);
+			success = statusController.changeDocStatus(newStatusValue);
+			statusChangeMessage = statusController.getErrorMessage();
 		} else {
 			if (m_po.get_ColumnIndex("DocAction") >= 0) {
 				if ( (((DocAction) m_po).getDocStatus().equals(DocAction.STATUS_Completed)||
@@ -165,7 +144,7 @@ public class MKanbanCard {
 						((DocAction) m_po).getDocStatus().equals(DocAction.STATUS_Reversed)||
 						((DocAction) m_po).getDocStatus().equals(DocAction.STATUS_Closed)) &&
 						!MColumn.get(Env.getCtx(), m_po.get_TableName(), statusColumn).isAlwaysUpdateable()) {
-					KDB_ErrorMessage = "KDB_CompletedCard";
+					statusChangeMessage = "KDB_CompletedCard";
 					return false;
 				}
 			}
@@ -174,7 +153,7 @@ public class MKanbanCard {
 		}
 		return success;
 	}
-
+	
 	public void getPriorityColor() {
 
 		if (kanbanBoard.hasPriorityOrder() && kanbanBoard.getPriorityRules().size() > 0) {
@@ -183,8 +162,8 @@ public class MKanbanCard {
 				BigDecimal maxValue = new BigDecimal(priorityRule.getMaxValue());
 
 				if (priorityValue.compareTo(minValue) >= 0 && priorityValue.compareTo(maxValue) <= 0) {
-					MPrintColor priorityColor = new MPrintColor(Env.getCtx(), priorityRule.getKDB_PriorityColor_ID(), null);
-					MPrintColor PriorityTextColor = new MPrintColor(Env.getCtx(), priorityRule.getKDB_PriorityTextColor_ID(), null);
+					MPrintColor priorityColor = MPrintColor.get(Env.getCtx(), priorityRule.getKDB_PriorityColor_ID());
+					MPrintColor PriorityTextColor = MPrintColor.get(Env.getCtx(), priorityRule.getKDB_PriorityTextColor_ID());
 					cardColor = priorityColor.getName();
 					textColor = PriorityTextColor.getName();
 					break;
@@ -211,7 +190,7 @@ public class MKanbanCard {
 
 		String parsedText = parse(kanbanCardText, !kanbanBoard.isHtml());
 
-		if (kanbanBoard.get_ValueAsBoolean("IsHtml"))
+		if (kanbanBoard.isHtml())
 			parsedText = parseHTML(parsedText);
 
 		return parsedText;	
@@ -292,7 +271,8 @@ public class MKanbanCard {
 					return "";
 				}
 				sql = inStr.substring(4, inStr.indexOf("ENDSQL"));
-				outStr.append(getTextByQuery(parse(sql, false)));
+				String queryValue = getValueFromSanitizedSQL(sql, po);
+				outStr.append(queryValue);
 				inStr = inStr.substring(inStr.indexOf("ENDSQL") + 6, inStr.length());	// after query
 				i = inStr.indexOf('@');
 				continue;
@@ -314,7 +294,7 @@ public class MKanbanCard {
 				token = token.substring(0, f);
 			}
 
-			outStr.append(parseVariable(token, format, po));		// replace context
+			outStr.append(parseVariable(token, format, po).toString());		// replace context
 
 			inStr = inStr.substring(j+1, inStr.length());	// from second @
 			i = inStr.indexOf('@');
@@ -327,6 +307,42 @@ public class MKanbanCard {
 		outStr.append(inStr);				//	add remainder
 		return outStr.toString();
 	}	//	parse
+	
+	/**
+	 * Sanitizes the SQL query configured in the Kanban Content
+	 * it creates a parameterized SQL to avoid SQL injection
+	 * @param sqlQuery
+	 * @param po
+	 * @return a string with the SQL result to be displayed in the Kanban Card
+	 */
+	private String getValueFromSanitizedSQL(String sqlQuery, PO po) {
+		List<Object> params = new ArrayList<>(); 
+		String newQuery = sqlQuery;
+
+		if (sqlQuery.indexOf('@') != -1) {
+			String inStr = sqlQuery;
+			String token;
+
+			int i = inStr.indexOf('@');
+			while (i != -1) {
+				inStr = inStr.substring(i+1, inStr.length());	// from first @
+
+				int j = inStr.indexOf('@');						// next @
+				if (j < 0) {									// no second tag
+					inStr = "@" + inStr;
+					break;
+				}
+				token = inStr.substring(0, j);
+				newQuery = newQuery.replaceFirst("@" + token + "@", "?");
+				params.add(parseVariable(token, null, po));
+				
+				inStr = inStr.substring(j+1, inStr.length());	// from second @
+				i = inStr.indexOf('@');
+			}
+		}
+
+		return getTextByQuery(newQuery, params);
+	}
 
 	/**
 	 * 	Parse Variable
@@ -334,7 +350,7 @@ public class MKanbanCard {
 	 *	@param po po
 	 *	@return translated variable or if not found the original tag
 	 */
-	private String parseVariable (String variable, String format,PO po) {
+	private Object parseVariable (String variable, String format,PO po) {
 		int index = po.get_ColumnIndex(variable);
 		if (index == -1) {
 			int i = variable.indexOf('.');
@@ -392,21 +408,26 @@ public class MKanbanCard {
 
 			if(po.get_Value(index)!=null)
 				value = df.format (po.get_Value(index));	
+		} else if (col.getAD_Reference_ID() == DisplayType.List) {
+			int refID = col.getAD_Reference_Value_ID();
+			value = MRefList.getListName(Env.getCtx(), refID, (String) po.get_Value(index));
 		} else {
 			value = po.get_Value(index);
 		}
 
 		if (value == null)
 			return "";
-		return value.toString();
+		return value;
 	}	//	parseVariable
 	
 	// devCoffee - 5377
-	private String getTextByQuery(String sql) {
+	private String getTextByQuery(String sql, List<Object> params) {
 		PreparedStatement ps = null;
+		ResultSet rs = null;
 		try {
 			ps = DB.prepareStatement(sql, null);
-			ResultSet rs = ps.executeQuery();
+			DB.setParameters(ps, params);
+			rs = ps.executeQuery();
 			String result = null;
 			if (rs.next()) {
 				switch (rs.getMetaData().getColumnType(1)) {
@@ -424,11 +445,28 @@ public class MKanbanCard {
 			e.printStackTrace();
 			return "";
 		} finally {
-			DB.close(ps);
+			DB.close(rs, ps);
 			ps = null;
+			rs = null;
 		}
 
 		return "";
 	}
 
+	public String getSwimlaneValue() {
+		return swimlaneValue;
+	}
+
+	public void setSwimlaneValue(String swimlaneValue) {
+		this.swimlaneValue = swimlaneValue;
+	}
+	
+	public int getDBPriorityValue() {
+		return m_po.get_ValueAsInt(priorityColumnName);
+	}
+	
+	public void savePriorityValue(int priorityValue) {
+		m_po.set_ValueOfColumn(priorityColumnName, priorityValue);
+		m_po.saveEx();
+	}
 }
