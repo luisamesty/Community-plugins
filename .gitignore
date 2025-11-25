@@ -1,3 +1,5 @@
+# Proyectos o carpetas locales ignoradas
+au.blindmot.mailbtn/
 ./org.community.p2.site/target/repository/artifacts.jar
 ./org.community.p2.site/target/p2agent/org.eclipse.equinox.p2.core/cache/artifacts.xml
 ./org.community.p2.site/target/repository/artifacts.xml.xz
