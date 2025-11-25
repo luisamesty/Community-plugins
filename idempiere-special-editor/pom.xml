@@ -4,7 +4,7 @@
 	<groupId>org.community</groupId>
     <artifactId>org.community.parent</artifactId>
 	<version>12.0.0-SNAPSHOT</version>
-    <relativePath>org.comunity.parent/pom.xml</relativePath>
+    <relativePath>org.community.parent/pom.xml</relativePath>
   </parent>
   <artifactId>org.community.ui.zk.specialeditor</artifactId>
   <packaging>eclipse-plugin</packaging>
