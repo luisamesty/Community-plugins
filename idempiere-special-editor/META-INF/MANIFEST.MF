@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Specialeditor
 Bundle-SymbolicName: org.community.ui.zk.specialeditor;singleton:=true
-Bundle-Version: 11.0.0.qualifier
+Bundle-Version: 12.0.0.qualifier
 Bundle-Activator: org.adempiere.plugin.utils.AdempiereActivator
 Export-Package: action.images,
  org.idempiere.base
@@ -22,7 +22,7 @@ Import-Package: org.adempiere.base,
  org.osgi.framework
 Service-Component: OSGI-INF/*.xml
 Bundle-ActivationPolicy: lazy
-Require-Bundle: org.adempiere.base;bundle-version="11.0.0",
+Require-Bundle: org.adempiere.base;bundle-version="12.0.0",
  zcommon;bundle-version="0.0.0",
  zel;bundle-version="0.0.0",
  zhtml;bundle-version="0.0.0",
